@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\work\KERConsultancy\projects\JGGrove\WebMail\Published</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AccountsList.ascx">
+      <publishTime>02/23/2018 18:22:18</publishTime>
+    </File>
+    <File Include="adminpanel/core/AdminPanel.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/core/Login.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/core/Menu.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/default.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/CheckConnection.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/CheckSettings.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/CommonSettings.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/DatabaseSettings.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/EndOfInstallation.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/License.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/install/LicenseKeySettings.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/check-symbols.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/common.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/errorShow.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/functions.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/install.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/pageswitcher.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/reports.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/resizer.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/selection.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/tooltip.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/js/user.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Domains/domain-edit.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Domains/domain-toolbar.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Domains/domains.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Domains/main.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Security/main.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Security/security-settings.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Upgrade/Controls/WebMail.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Upgrade/Controls/XMail.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/Upgrade/main.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/database.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/debug.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/interface.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/login.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/menu.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/server-integration.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/Controls/webmail.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/js/login.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/main.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/show-log.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/plugins/WebMailLite/updatedb.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="adminpanel/styles/styles.css">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="App_Code/CalendarObjects.cs">
+      <publishTime>02/23/2018 18:22:18</publishTime>
+    </File>
+    <File Include="App_Code/JgDbManager.cs">
+      <publishTime>02/23/2018 18:22:18</publishTime>
+    </File>
+    <File Include="bin/LitJson.dll">
+      <publishTime>02/08/2018 12:42:58</publishTime>
+    </File>
+    <File Include="bin/MailApi.dll">
+      <publishTime>02/08/2018 12:42:58</publishTime>
+    </File>
+    <File Include="bin/MailServerApi.dll">
+      <publishTime>02/08/2018 12:42:58</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>02/08/2018 12:42:58</publishTime>
+    </File>
+    <File Include="bin/NetSpell.SpellChecker.dll">
+      <publishTime>02/08/2018 12:42:58</publishTime>
+    </File>
+    <File Include="bin/WebMail.dll">
+      <publishTime>02/26/2018 18:44:43</publishTime>
+    </File>
+    <File Include="check-mail.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="Copyright.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="default.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="download-view-attachment.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="edit-area.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="empty.html">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="flash-detect.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="get-attachment-binary.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="go.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="history-storage.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="import.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="Integration/integr.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/calendar-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/common-handlers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/common-helpers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/data-source.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/defines.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/functions.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/jquery.min.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/loaders.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/page-switcher.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/popups.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/toolbar.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/variable-table.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/common/webmail.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/contact-line.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/contacts-data.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/contacts-handlers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/contacts-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/edit-contact.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/edit-group.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/import.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/contacts/view-contact.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/login/login-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/login/password-reset-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/login/reg-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/autocomplete-recipients.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/folders-pane.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/html-editor.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/mail-data.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/mail-handlers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-headers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-info.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-line.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-list-central-pane.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-list-central-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-list-display.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-list-prototype.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-list-top-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/message-reply-pane.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/mini-webmail-window.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/new-message-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/resizers.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/swfupload.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/swfupload.swf">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/mail/view-message-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/account-list.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/account-properties.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/autoresponder.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/calendar.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/common.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/defines-calendar.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/filters.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/folders.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/mobile-sync.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/settings-data.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/signature.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="js/settings/user-settings-screen.js">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="langs-js.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="linkcreator.html">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="Logo.ascx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="mini-webmail.aspx">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="print-msg.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="session-saver.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/button-link-right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/button-link.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/editor.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/header.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/login_form_refl.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/mail.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/pda-gradients.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/pda-gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/pda-icons.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/pda-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/reg-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/reply-button.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/search-icon.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/styles-rtl.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/wait.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/webmail-icon.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic/wm-logo.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/bullet.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/button-link-right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/button-link.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/editor.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/item_left.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/item_right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/mail.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/ornament.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/pda-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/reg-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/reply-button.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/styles-rtl.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/wait.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/AfterLogic_Dark/webmail-icon.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/button-link-right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/button-link.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/demo_note_bg.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/editor.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/header.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/login_form_refl.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/mail.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/pda-gradients.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/pda-gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/pda-icons.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/pda-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/reg-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/reply-button.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/search-icon.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/styles-rtl.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/wait.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/webmail-icon.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Alice/wm-logo.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/button-link-right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/button-link.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/editor.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/flower_left.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/flower_login.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/flower_right.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/flower_set.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/flower_top.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/mail.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/reg-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/reply-button.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/styles-rtl.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Barbie/wait.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/cancelbutton.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/login.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/redline.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/upload_attachments.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/button-link-right.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/button-link.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/editor.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/gradients.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/mail.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/reg-styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/reply-button.png">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/styles-rtl.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/styles.css">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="skins/Ya-Ya/wait.gif">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="spellcheck.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="upload.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="view-embedded-msg.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="view-full-msg.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>02/23/2018 18:22:19</publishTime>
+    </File>
+    <File Include="webmail.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+    <File Include="xml-processing.aspx">
+      <publishTime>02/23/2018 18:22:20</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

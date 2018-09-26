@@ -1,0 +1,2746 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="JGApplicant.Master.cs" Inherits="JG_Prospect.JGApplicant" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Src="Controls/Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<%@ Register Src="~/Controls/_UserGridPhonePopup.ascx" TagPrefix="uc1" TagName="_UserGridPhonePopup" %>
+<%@ Register Src="~/Controls/_WebToWebCaller.ascx" TagPrefix="uc1" TagName="_WebToWebCaller" %>
+<%@ Register Src="~/Controls/left.ascx" TagName="leftmenu" TagPrefix="uc2" %>
+<%
+    string baseUrl = HttpContext.Current.Request.Url.Scheme +
+                            "://" + HttpContext.Current.Request.Url.Authority +
+                            HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html data-ng-app="JGApp">
+<head runat="server">
+    <title>JG Prospect</title>
+    <link href="css/screen.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="css/jquery.ui.theme.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <link href="/js/tribute/tribute.css" rel="stylesheet" />
+    <link href="/Content/paging.css" rel="stylesheet" />
+    <link rel="Stylesheet" href="css/user-grid.css" />
+    <link rel="Stylesheet" href="css/flags24.css" />
+    <link href="/Content/paging.css?v=<%# JG_Prospect.Common.modal.SingletonGlobal.Instance.RandomGUID %>" rel="stylesheet" />
+
+    <link href="/Content/web-fonts-with-css/css/fa-solid.min.css" rel="stylesheet" />
+    <link href="/Content/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet" />
+
+    <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>    
+    <script type="text/javascript" src="js/jquery.watermarkinput.js"></script>    
+    <script src="//code.jquery.com/ui/1.10.1/jquery-ui.js" type="text/javascript"></script>
+
+    <%--Js Added for Google Map and marker--%>
+    <%-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>  
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"> </script>      --%>
+    <%--Js Added for Google Map and marker--%>
+    <%--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />--%>
+    <link href="js/jquery.ptTimeSelect.css" rel="stylesheet" type="text/css" />
+    <%--JJ<script src="js/jquery.ptTimeSelect.js" type="text/javascript"></script>--%>
+    <%--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />--%>
+    <!--accordion jquery-->
+    <script type="text/javascript" src="/js/tribute/tribute.min.js"></script>
+    <script type="text/javascript" src="/js/ddaccordion.js"></script>
+    <script type="text/javascript" src="/js/jg-common.js"></script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/js/common-js.js"></script>
+    <script type="text/javascript" src="/js/paging.js"></script>
+    <script type="text/javascript" src="/Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+
+    <script type="text/javascript" src="/js/angular/scripts/jgapp.js"></script>
+
+    <style type="text/css">
+        .ui-widget-header {
+            border: 0;
+            background: none /*{bgHeaderRepeat}*/;
+            color: #222 /*{fcHeader}*/;
+        }
+
+        .btn_poup {
+            float: right;
+        }
+
+            .btn_poup input {
+                background: #B85250;
+                padding: 10px;
+                margin-top: 10px;
+                color: #FFF;
+                border-radius: 5px;
+                border: 1px solid #e5e5e5;
+                cursor: pointer;
+            }
+
+        #phoneDashboardDiv {
+            position: fixed;
+            bottom: 0;
+            right: 2%;
+            background-color: #fff;
+            color: #7F7F7F;
+            padding: 20px;
+            border: 2px solid #ccc;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -khtml-border-radius: 20px;
+            -moz-box-shadow: 0 1px 5px #333;
+            -webkit-box-shadow: 0 1px 5px #333;
+            z-index: 101;
+            width: 300px;
+            height: 280px;
+        }
+
+            #phoneDashboardDiv .phone_dashbaord {
+                cursor: move;
+            }
+
+
+            #phoneDashboardDiv h1 {
+                border-bottom: 1px dashed #7F7F7F;
+                margin: -20px -20px 0px -20px;
+                font-size: 16px;
+                padding: 8px;
+                height: 20px;
+                line-height: 20px;
+                background-color: #FFEFEF;
+                color: #fff;
+                -moz-border-radius: 20px 20px 0px 0px;
+                -webkit-border-top-left-radius: 20px;
+                -webkit-border-top-right-radius: 20px;
+                -khtml-border-top-left-radius: 20px;
+                -khtml-border-top-right-radius: 20px;
+            }
+
+        .clsPhoneLink {
+            cursor: pointer;
+        }
+
+        a.boxclose {
+            float: right;
+            margin-top: -30px;
+            margin-right: -30px;
+            cursor: pointer;
+            color: #fff;
+            border: 1px solid #AEAEAE;
+            border-radius: 30px;
+            background: #605F61;
+            font-size: 31px;
+            font-weight: bold;
+            display: inline-block;
+            line-height: 0px;
+            padding: 11px 3px;
+            text-decoration: none;
+        }
+
+        .boxclose:before {
+            content: "×";
+        }
+
+
+        #ScriptEditor_ctl01_ctl00, #ScriptEditor_ctl01_ctl01, #ScriptEditor_ctl01_ctl11, #ScriptEditor_ctl01_ctl15, #ScriptEditor_ctl01_ctl18, #ScriptEditor_ctl01_ctl20,
+        #ScriptEditor_ctl01_ctl26, #ScriptEditor_ctl01_ctl27, #ScriptEditor_ctl01_ctl28, #ScriptEditor_ctl01_ctl29, #ScriptEditor_ctl01_ctl30, #ScriptEditor_ctl01_ctl35,
+        #ScriptEditor_ctl01_ctl45, #ScriptEditor_ctl01_ctl46, #ScriptEditor_ctl01_ctl47, #ScriptEditor_ctl01_ctl48, #ScriptEditor_ctl01_ctl10, #ScriptEditor_ctl01_ctl19,
+        #ScriptEditor_ctl01_ctl25, #ScriptEditor_ctl01_ctl09 {
+            display: none !important;
+        }
+
+        #btnNewScript {
+            position: fixed;
+            bottom: 4%;
+            right: 4%;
+        }
+
+        .cls_textbox {
+            float: left;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+            .cls_textbox input {
+                height: 15px;
+                padding: 5px;
+            }
+
+        #ScriptEditor_ctl02_ctl00 {
+            height: 100px !important;
+        }
+
+          /* Absolute Center Spinner */
+        .loading {
+            position: fixed;
+            z-index: 10000;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+            /* Transparent Overlay */
+            .loading:before {
+                content: '';
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.1);
+            }
+
+            /* :not(:required) hides these rules from IE9 and below */
+            .loading:not(:required) {
+                /* hide "loading..." text */
+                font: 0/0 a;
+                color: transparent;
+                text-shadow: none;
+                background-color: transparent;
+                border: 0;
+            }
+
+                .loading:not(:required):after {
+                    content: '';
+                    display: block;
+                    font-size: 10px;
+                    width: 1em;
+                    height: 1em;
+                    margin-top: -0.5em;
+                    -webkit-animation: spinner 1500ms infinite linear;
+                    -moz-animation: spinner 1500ms infinite linear;
+                    -ms-animation: spinner 1500ms infinite linear;
+                    -o-animation: spinner 1500ms infinite linear;
+                    animation: spinner 1500ms infinite linear;
+                    border-radius: 0.5em;
+                    -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                    box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                }
+
+        /* Animation */
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-o-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        .outer-filter-search{display:none !important;}
+        .header-msg {
+            min-height: 187px;color: #000;    padding-top: 3px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        $(function () {
+
+            //On UpdatePanel Refresh
+            //debugger;
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            
+            if (prm != null) {
+                // debugger;
+                prm.add_beginRequest(function (sender, e) {
+                    if (sender._postBackSettings.panelsToUpdate != null) {
+                        $(".loading").show();
+                    }
+                });
+                prm.add_endRequest(function (sender, e) {
+                    $(".loading").hide();
+                });
+            };
+
+            $('#boxclose').click(function () {
+                $('#phoneDashboardDiv').hide();
+                $("#divScriptLinks").show();
+                $("#scriptDiv").hide();
+                //BackToPhoneScripts();
+            });
+        });
+    </script>
+</head>
+<body ng-app="JGApp">
+
+    <script type="text/javascript" src='<%=Page.ResolveUrl("~/js/jquery-ui.js")%>'></script>
+    <script type="text/javascript" src='<%=Page.ResolveUrl("~/js/jg-common.js")%>'></script>
+    <form id="form1" runat="server">
+        <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" AsyncPostBackTimeout="360000">
+            <Services>
+                <%-- <asp:ServiceReference Path="~/SuggestSearch.asmx" />--%>
+            </Services>
+        </ajaxToolkit:ToolkitScriptManager>
+        <%--<asp:ScriptManager ID="scriptmanager1" runat="server">
+    </asp:ScriptManager>--%>
+    <div class="container">
+        <!--header section-->
+        <div class="header">
+            <uc1:Header ID="Header1" runat="server" ShowTaskList="false" ShowMenu="false" />
+        </div>
+        <script type="text/javascript">
+            function checkTextAreaMaxLength(textBox, e, length) {
+
+                var mLen = textBox["MaxLength"];
+                if (null == mLen)
+                    mLen = length;
+
+                var maxLength = parseInt(mLen);
+                if (!checkSpecialKeys(e)) {
+                    if (textBox.value.length > maxLength - 1) {
+                        if (window.event)//IE
+                        {
+                            e.returnValue = false;
+                            return false;
+                        }
+                        else//Firefox
+                            e.preventDefault();
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+                $(".tableClass tr:even").addClass('even'); //Tables odd & Even
+                $(".tableClass tr:odd").addClass('odd');
+            });
+
+            function isAlphaKey(e) {
+                var k;
+                document.all ? k = e.keyCode : k = e.which;
+                return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k == 46));
+            }
+            function isNumericKey(e) {
+                var k;
+                document.all ? k = e.keyCode : k = e.which;
+                return ((k >= 48 && k <= 57) || (k == 46) || k == 8 || k == 32);
+            }
+            function isDateKey(e) {
+                var k;
+                document.all ? k = e.keyCode : k = e.which;
+                return ((k >= 48 && k <= 57) || (k == 47) || (k == 46) || k == 8 || k == 32);
+            }
+
+            //    function Numeric(txtName) 
+            //    {
+            ////        if (txtName.value != '' && txtName.value.match(/[^a-zA-Z]+$/) == null) {
+            //            txtName.value = txtName.value.replace(/[A-Za-z\W]/g, '');
+            //        
+
+            //    }
+            //    function Alpha(txtName) {
+
+            ////        if (txtName.value != '' && txtName.value.match(/[^0-9]+$/) == null) {
+            //            txtName.value = txtName.value.replace(/[0-9]/g, '');
+            //        
+
+            //    }
+        </script>
+        <div class="content_panel">
+            <div class="left_panel">
+                <div class="arrowlistmenu" runat="server" visible="false">
+                    <uc2:leftmenu ID="left1" runat="server" />
+                    <ul class="left_nav"> 
+                        <li><a href="ShowResourcesJr.aspx"> Resources</a></li> 
+                        <li><a href="<%= Page.ResolveUrl("~/Sr_App/InstallCreateProspect.aspx")%>">Install Prospect</a></li>
+                        <%--<li><a href="../ProgressReport.aspx">Progress Report</a></li>--%>    
+                        <li>
+                            <ul>
+                                <li id="li_addresources" runat="server"><a href="<%= Page.ResolveUrl("~/AddResourcesJr.aspx")%>">Add Resources
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="loading" style="display: none">Loading&#8230;</div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <!--footer section-->
+    <div class="footer_panel">
+        <ul>
+            <li>&copy; 2012 JG All Rights Reserved.</li>
+            <li><a href="#">Terms of Use</a></li>
+            <li>|</li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+    </div>
+    </form>
+    <div class="phone-dashboard">
+        <div class="header">
+            <span class="popup-title">Phone / Vmail Dashboard</span>
+            <div class="title-popup-stats">
+                <ul style="">
+                    <li><a href="#" onclick="InitiateBlankChat(this,'all')" class="red-text">All</a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li id="test"><a id="Header1_hypEmail" class="clsPhoneLink" onclick="InitiateBlankChat(this, 'email')" style="color: white;">Emails<label id="emailUnreadCount" class="badge badge-error">0</label><label id="lblUnRead" class="badge badge-error hide"></label></a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li><a href="javascript:;" id="Header1_idPhoneLink" class="clsPhoneLink" onclick="openPhoneDashboard(this)">Phone / Vmail(0)<label id="lblNewCounter" class="badge badge-error">10</label><label id="lblUnRead" class="badge badge-error hide"></label></a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li><a id="hypChat" href="#" class="clsPhoneLink" onclick="InitiateBlankChat(this, 'chat');">Chat
+		               
+                        <label style="display: none;" class="badge badge-error chatUnreadCount"></label>
+                        <label style="display: none;" class="badge badge-error chatAutoEntriesCount"></label>
+                        <label class="badge badge-error hide"></label>
+                    </a></li>
+                </ul>
+            </div>
+            <span class="close" onclick="closePhonePopup(this)"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+            <span class="min-max" onclick="minMaxPhone(this)"><i class="fa fa-window-minimize" aria-hidden="true"></i></span>
+            <span class="fullscreen-btn" onclick="fullscreenPhone(this)"><i class="fas fa-window-restore" aria-hidden="true"></i></span>
+        </div>
+        <div class="content-area">
+            <iframe src=""></iframe>
+        </div>
+    </div>
+    <div id="MainThrobberImage" style="position: absolute; z-index: 99999999999999; display: none;">
+        <img alt="throbber" src="/img/ajax-loader.gif" />
+    </div>
+    <div class="telecom-dashboard-popup fullscreen-chat">
+        <span class="data" style="display: none;"></span>
+        <input type="hidden" class="size" />
+        <input type="hidden" class="type" />
+        <input type="hidden" class="width" />
+        <input type="hidden" class="height" />
+        <input type="hidden" id="imageBase64" />
+        <div class="header">
+            <span class="popup-title">Chat Dashboard</span>
+            <div class="title-popup-stats">
+                <ul style="">
+                    <li><a href="#" onclick="InitiateBlankChat(this,'all')" class="red-text">All</a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li id="test"><a id="Header1_hypEmail" class="clsPhoneLink" onclick="InitiateBlankChat(this, 'email')" style="color: white;">Emails<label id="emailUnreadCount" class="badge badge-error">0</label><label id="lblUnRead" class="badge badge-error hide"></label></a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li><a href="javascript:;" id="Header1_idPhoneLink" class="clsPhoneLink" onclick="openPhoneDashboard(this)">Phone / Vmail(0)<label id="lblNewCounter" class="badge badge-error">10</label><label id="lblUnRead" class="badge badge-error hide"></label></a></li>
+                    <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li><a id="hypChat" href="#" class="clsPhoneLink" onclick="InitiateBlankChat(this, 'chat');">Chat
+		               
+                        <label style="display: none;" class="badge badge-error chatUnreadCount"></label>
+                        <label style="display: none;" class="badge badge-error chatAutoEntriesCount"></label>
+                        <label class="badge badge-error hide"></label>
+                    </a></li>
+                </ul>
+            </div>
+            <span class="close" onclick="closeTelecomPopup(this)"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+            <span class="min-max" onclick="minMax(this)"><i class="fa fa-window-minimize" aria-hidden="true"></i></span>
+            <span class="fullscreen-btn" onclick="fullscreen(this)"><i class="fas fa-window-restore" aria-hidden="true"></i></span>
+            <input type="hidden" id="ChatSourceId" />
+        </div>
+        <div class="content-area">
+            <div class="column1">
+                <div class="dialer-section">
+                    <div class="header">
+                        <span class="group-name">Phone / VMail Dashboard</span>
+                        <span class="minimize" onclick="minimizePhone(this)">
+                            <img src="/img/min-max.jpg"></span>
+                    </div>
+                    <div id="wrapper">
+                        <div id="phone">
+                            <div class="col-md-4 phone">
+                                <div class="row1">
+                                    <input type="hidden" id="appSettings" />
+                                    <div class="col-md-12 white-shadow">
+                                        <input type="text" name="name" onkeyup="trimSpace(this)" onblur="trimSpace(this)" id="toNumber" class="form-control tel" placeholder="+91801XXXXXXX" value="" />
+                                        <div class="num-pad">
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        1
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        2 <span class="small">
+                                                            <p>
+                                                                ABC
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        3 <span class="small">
+                                                            <p>
+                                                                DEF
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        4 <span class="small">
+                                                            <p>
+                                                                GHI
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        5 <span class="small">
+                                                            <p>
+                                                                JKL
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        6 <span class="small">
+                                                            <p>
+                                                                MNO
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        7 <span class="small">
+                                                            <p>
+                                                                PQRS
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        8 <span class="small">
+                                                            <p>
+                                                                TUV
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        9 <span class="small">
+                                                            <p>
+                                                                WXYZ
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        *
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        0 <span class="small">
+                                                            <p>
+                                                                +
+                                                           
+                                                            </p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="num">
+                                                    <div class="txt">
+                                                        #
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                        </div>
+                                        <input type="button" id="makecall" class="btn btn-success btn-block flatbtn" value="CALL" />
+                                        <input type="button" class="hangup btn btn-danger btn-block flatbtn" value="HANGUP" />
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                            <div class="button-3">
+                                <div class="callinfo">
+                                    <h4 id="boundType">Fetching...</h4>
+                                    <h4 id="callNum">Fetching...</h4>
+                                    <h2 id="callDuration">00:00</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dialer-right">
+                            <input type="hidden" class="script-data" value="" />
+                            <div class="scrips">
+                                <div class="tabs">
+                                    <div onclick="showhideType(this, 1);">Inbound</div>
+                                    <div onclick="showhideType(this, 2);" class="active">Outbound</div>
+                                </div>
+                                <div class="script-data">
+                                    <div class="inner-tabs">
+                                    </div>
+                                    <div class="content"></div>
+                                    <div class="content-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--<div class="user-list-section">
+                    <img src="/img/user-list.PNG" />
+                </div>--%>
+            </div>
+            <div class="column2">
+                <div class="email-section">
+                    <div class="header">
+                        <span class="group-name">Email Dashboard</span>
+                        <span class="minimize" onclick="minimizeEmail(this)">
+                            <img src="/img/min-max.jpg"></span>
+                    </div>
+                    <%--<img src="/img/inbox.PNG" />--%>
+                    <iframe id="iframe-inbox" src="/email/default.aspx"></iframe>
+                </div>
+                <div class="chat-section">
+                    <div class="chat-container" id="chat-container">
+                        <div class="all-chats">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column3">
+                <div class="email-compose-section">
+                    <%--<img src="/img/compose.PNG" />--%>
+                </div>
+                <div class="chat-users-section">
+                    <%--<div class="header">Contacts</div>--%>
+                    <div class="list">
+                        Loading Online Users...
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay">
+    </div>
+    <audio controls="controls" class="chat-notification-sound">
+        <source src="/Chat/chat-notification.mp3" />
+        <source src="/Chat/chat-notification.ogg" />
+    </audio>
+
+    <script src="/js/jquery.caret.js"></script>
+    <link href="../Chat/chat.css?v=<%= JG_Prospect.Common.modal.SingletonGlobal.Instance.RandomGUID %>" rel="stylesheet" />
+    <script src="/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' type='text/javascript'></script>
+    <link href="../js/Jquery-mention/jquery.mentionsInput.css" rel="stylesheet" />
+    <script src='/js/Jquery-mention/lib/jquery.events.input.js' type='text/javascript'></script>
+    <script src='/js/Jquery-mention/lib/jquery.elastic.js' type='text/javascript'></script>
+    <script src='/js/Jquery-mention/jquery.mentionsInput.js' type='text/javascript'></script>
+
+    <!-- Begin emoji-picker Stylesheets -->
+    <link href="../Content/emoji-picker/lib/css/emoji.css" rel="stylesheet">
+    <!-- End emoji-picker Stylesheets -->
+    <!-- Begin emoji-picker JavaScript -->
+    <script src="/Content/emoji-picker/lib/js/config.js"></script>
+    <script src="/Content/emoji-picker/lib/js/util.js"></script>
+    <script src="/Content/emoji-picker/lib/js/jquery.emojiarea.js"></script>
+    <script src="/Content/emoji-picker/lib/js/emoji-picker.js"></script>
+    <!-- End emoji-picker JavaScript -->
+    <script src="/js/copy-image.js"></script>
+    <script type="text/javascript" src="/js/dropzone.js"></script>
+    <%--<script type="text/javascript" src="https://s3.amazonaws.com/plivosdk/web/plivo.min.js"></script>--%>
+    <script src="https://cdn.plivo.com/sdk/browser/v2/plivo.min.js"></script>
+    <script src="/js/button-action.js?v=<%= JG_Prospect.Common.modal.SingletonGlobal.Instance.RandomGUID %>"></script>
+    <link href="../Content/dialer-call.css?v=<%= JG_Prospect.Common.modal.SingletonGlobal.Instance.RandomGUID %>" rel="stylesheet">
+
+    <link href="../css/intTel/intlTelInput.css" rel="stylesheet" />
+    <script src="/js/intTel/intlTelInput.js"></script>
+
+    <script type="text/javascript">
+        var oldSortBy = '', oldFilterBy = '', oldType = 'all', oldCallType='recent';
+        var primaryStatus =['', 'Active','Applicant','','', 'Interview Date : Applicant', 'Offer Made: Applicant', '', '', '', 'Referral Applicant'];
+        var loggedInUserDesginationId = <%=LoggedInUserDesginationId %>;
+        var loggedInUserPrimaryStatus = <%=loggedInUserPrimaryStatus %>;
+        // $(document).ready(function () {
+        // Reference the auto-generated proxy for the hub.
+        var chat = $.connection.chatHub;
+        var userTobeAddedIntoUserChatGroupId = 0;
+        var userChatStatus = '<%= (int)JG_Prospect.Common.ChatUserStatus.Idle %>';
+        var pageTitle = $('head').find('title').html();
+        sendChat = function (e, sender) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            var chatGrpId = $(sender).parents('.chat-box').find('#ChatGroupId').val();
+            var receiverIds = $(sender).parents('.chat-box').find('#ReceiverIds').val();
+            var chatSourceId = $('#ChatSourceId').val();
+            var taskId = $('#TaskId').val();
+            var taskMultilevelListId = $('#TaskMultilevelListId').val();
+            var userChatGroupId = $('#UserChatGroupId').val();
+            if (receiverIds != '' && receiverIds != null && chatSourceId != '' && chatSourceId != null) {
+                if ($(sender).hasClass('text-send')) {
+                    var chatText = $(sender).parents('div.chat-text').find('.emoji-wysiwyg-editor').html();
+                    if (chatText != undefined && chatText != '' && chatText != null) {
+                        chat.server.sendChatMessage(chatGrpId, chatText, chatSourceId, receiverIds, null, taskId, taskMultilevelListId, userChatGroupId);
+                        $('.emoji-wysiwyg-editor').html('');
+                    }
+                } else {
+
+                    var charCode = (typeof e.which === "number") ? e.which : e.keyCode;
+                    if (charCode === 13) {
+                        var ev = $.Event("keydown", { keyCode: 20 });
+                        $(sender).trigger(ev);
+                        var chatText = $(sender).html();
+                        $(sender).html('');
+                        if (chatText != undefined && chatText != '' && chatText != null) {
+                            chat.server.sendChatMessage(chatGrpId, chatText, chatSourceId, receiverIds, null, taskId, taskMultilevelListId, userChatGroupId);
+                            $('.emoji-wysiwyg-editor').html('');
+                        }
+                    }
+                }
+                userTobeAddedIntoUserChatGroupId = userChatGroupId;
+            }
+        }
+        minimize = function (sender) {
+            if ($(sender).parents('.telecom-dashboard-popup').hasClass('fullscreen-chat')) {
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-chat');
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                $('.popup-title').html('ALL-Telecom Dashboard');
+                $(sender).parents('.telecom-dashboard-popup').find('.call-logs').hide();
+            } else {
+                $(sender).parents('.telecom-dashboard-popup').addClass('fullscreen-chat');
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                $(sender).parents('.telecom-dashboard-popup').find('.call-logs').hide();
+                $('.popup-title').html('Chat Dashboard');
+            }
+        }
+        closechat = function (sender) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            chat.server.closeChat($(sender).parents('.chat-box').attr('id'));
+            $(sender).parents('.chat-box').remove();
+            if (window.location.href.toLowerCase().indexOf('edituser.aspx') > 1)
+                ReLoadNotes();
+        }
+        closeTelecomPopup = function (sender) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            var taskId = $(sender).parents('.telecom-dashboard-popup').find('#TaskId').val();
+            var taskMultilevelListId = $(sender).parents('.telecom-dashboard-popup').find('#TaskMultilevelListId').val();
+            var receiverIds = $(sender).parents('.telecom-dashboard-popup').find('#ReceiverIds').val();
+            var chatGroupId = $(sender).parents('.telecom-dashboard-popup').find('#ChatGroupId').val();
+            chat.server.closeChat($(sender).parents('.telecom-dashboard-popup').find('.chat-box').attr('id'));
+            $(sender).parents('.telecom-dashboard-popup').hide();
+            $('.overlay').hide();
+            if (window.location.href.toLowerCase().indexOf('itdashboard') > 0) {
+                var container = $('.notes-section[taskid="' + taskId + '"]').filter('div[taskmultilevellistid="' + taskMultilevelListId + '"]').find('.note-list');
+                LoadNotes(container, taskId, taskMultilevelListId);
+            }
+        }
+        addUserIntoChatGroup = function (id) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            var chatGroupId = $('.telecom-dashboard-popup').find('#ChatGroupId').val();
+            var userChatGroupId = $('.telecom-dashboard-popup').find('#UserChatGroupId').val();
+            var existingUsers = $('.telecom-dashboard-popup').find('#ReceiverIds').val();
+            chat.server.addUserIntoChatGroup(chatGroupId, id, userChatGroupId);
+            userTobeAddedIntoUserChatGroupId = 0;
+        }
+        // Start the connection.
+        //$.connection.hub.logging = true;
+        $.connection.hub.start().done(function () {
+            console.log('started...');
+            GetOnlineUsers();
+            // logic to open chat popup as per query string
+            var RcvrID = getUrlVars()["RcvrID"];
+            var chatGroupId = getUrlVars()["CGID"];
+            var userChatGroupId = getUrlVars()["ugid"];
+            if (RcvrID != undefined && chatGroupId != undefined){
+                if(userChatGroupId==undefined || userChatGroupId == null || userChatGroupId==''){
+                    userChatGroupId = 0;
+                }
+                InitiateChat($('.left_panel'), RcvrID, chatGroupId, '<%=(int)JG_Prospect.Common.ChatSource.TouchPointLogPage%>', 0, 0, userChatGroupId);
+            }
+        }).fail(function (reason) {
+            console.log(reason);
+        });
+        $.connection.hub.disconnected(function () {
+            console.log('Disconnected');
+            setTimeout(function () {
+                console.log('Reconnecting...');
+                $.connection.hub.start();
+            }, 5000); // Restart connection after 5 seconds.
+        });
+        chat.client.sendChatMessageCallbackError = function (data) {
+            console.log(data.Object);
+        };
+        //Callback function which the hub will call when it has finished processing,
+        // is attached to the proxy
+        chat.client.updateClient = function (data) {
+            var isNew = false;
+            var id = data.Message.split('`')[0];
+            var name = data.Message.split('`')[1];
+            var receiverIds = data.Message.split('`')[2];
+            var senderId = data.Message.split('`')[3];
+            var taskId = data.Message.split('`')[4];
+            var taskMultilevelListId = data.Message.split('`')[5];
+            var userChatGroupId = data.Message.split('`')[6];
+            var userChatGroupType = data.Message.split('`')[7];
+            var chatSourceId = data.Object.ChatSourceId;
+            var oldchatId = 'none';
+            // Check if other's chat is already open at receiver's end
+            if ($('.telecom-dashboard-popup').is(':visible')) {
+                oldchatId = $('.telecom-dashboard-popup').find('#ChatGroupId').val();
+            }
+            if ((id == oldchatId || oldchatId == 'none') && !$('.telecom-dashboard-popup').hasClass('minimize')) {
+                var strChat = '<div class="chat-box" id="' + id + '" style="display:block;">' +
+                                            '<div class="header"><span class="group-name">' + name +
+                                                '</span><span class="close" onclick="closechat(this)"><i class="fa fa-times" aria-hidden="true"></i></span>' +
+                                                '<span class="member-list-container"><i class="fas fa-ellipsis-v" aria-hidden="true"></i><div class="member-list"></div></span>' +
+                                                '<span class="minimize" onclick="minimize(this)"><img src="/img/min-max.jpg" /></span>' +
+                                                '<span class="last-seen" title="last seen"></span></div>' +
+                                            '<input type="hidden" id="ChatGroupId" value="' + id + '" />' +
+                                            '<input type="hidden" id="TaskId" value="' + taskId + '" />' +
+                                            '<input type="hidden" id="TaskMultilevelListId" value="' + taskMultilevelListId + '" />' +
+                                            '<input type="hidden" id="ReceiverIds" value="' + receiverIds + '" />' +
+                                            '<input type="hidden" id="UserChatGroupId" value="' + userChatGroupId + '" />' +
+                                            '<input type="hidden" id="UserChatGroupType" value="' + userChatGroupType + '" />' +
+                                            '<input type="hidden" id="ChatSourceId" value="' + chatSourceId + '" />' +
+                                            '<div class="chats watermark-logo"></div>' +
+                                            '<div class="chat-text">' +
+                                                '<input type="text" data-emojiable="true" class="mention" placeholder="Say Something..." id="chattext" onkeyup="sendChat(event, this);" />' +
+                                                '<button class="text-send" onclick="sendChat(event, this)">Send</button>' +
+                                                '<div class="file-send">Drop Files</div>' +
+                                                '<button class="record-send"><i class="fa fa-microphone" aria-hidden="true"></i></button>' +
+                                            '</div>' +
+                                       '</div>';
+                if ($('.all-chats').find('#' + id) != undefined)
+                    if ($('.all-chats').find('#' + id).length <= 0) {
+                        isNew = true;
+                        $('.all-chats').html(strChat);
+                        LoadPreviousChat(this, id, receiverIds + ',' + senderId, chatSourceId, userChatGroupId, taskId, taskMultilevelListId, 1, 50, false);
+                        InitializeEmoji();
+                    }
+                // GetPhoneScripts(this);
+                // Show chat popup
+                $('.telecom-dashboard-popup').show();
+                $('.overlay').show();
+                $('#ChatSourceId').val(chatSourceId);
+                // Calculate Center
+                var sW = $(window).width();
+                var pW = $('.telecom-dashboard-popup').width();
+                var sH = $(window).height();
+                var pH = $('.telecom-dashboard-popup').height();
+                $('.telecom-dashboard-popup').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2)) + 'px' });
+                // Add the message to the page.
+                // Identify sender/receiver
+                var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                var senderReceiver = loggedInUserId == data.Object.UserId ? 'sender' : 'receiver';
+                var str = "";
+                if (data.Results.length > 0) {
+                    $(data.Results).each(function (i) {
+                        var msg = data.Results[i].Message;
+                        var fileid = data.Results[i].FileId;
+                        var previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                        var audioTag = '';
+                        if (fileid != undefined && fileid != null && fileid != '') {
+
+                            var fileExt = (msg.split(':-:')[0].split('.').pop()).toLowerCase();
+                            switch (fileExt) {
+                                case 'xls':
+                                case 'xlsx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                    break;
+                                case 'html':
+                                case 'html':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                    break;
+                                case 'pdf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                    break;
+                                case 'txt':
+                                case 'rtf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                    break;
+                                case 'doc':
+                                case 'docx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                    break;
+                                case 'zip':
+                                case 'rar':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                    break;
+                                case 'mp3':
+                                case 'wav':
+                                case 'ogg':
+                                    audioTag = '<audio controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                    break;
+                                case 'mp4':
+                                case 'webm':
+                                    audioTag = '<video width="320" height="240" controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                    break;
+                                case 'png':
+                                case 'jpg':
+                                case 'bmp':
+                                case 'jpeg':
+                                case 'gif':
+                                    previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                                    break;
+                                default:
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/file.png" />';
+                                    break;
+                            }
+                            if (audioTag != '') {
+                                msg = audioTag;
+                            } else {
+                                msg = '<a href="/chat/attachments/' + msg.split(':-:')[1] + '" target="_black">' +
+                                        previewImage +
+                                        '</a>';
+                            }
+                        }
+                        if (ValidURL(msg.trim())) {
+                            var ext = (msg.split('.').pop()).toLowerCase();
+                            switch (ext) {
+                                case 'xls':
+                                case 'xlsx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                    break;
+                                case 'html':
+                                case 'html':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                    break;
+                                case 'pdf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                    break;
+                                case 'txt':
+                                case 'rtf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                    break;
+                                case 'doc':
+                                case 'docx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                    break;
+                                case 'zip':
+                                case 'rar':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                    break;
+                                case 'mp3':
+                                case 'wav':
+                                case 'ogg':
+                                    audioTag = '<audio controls><source src="' + msg + '"></audio>';
+                                    break;
+                                case 'mp4':
+                                case 'webm':
+                                    audioTag = '<video width="320" height="240" controls><source src="' + msg + '"></audio>';
+                                    break;
+                                case 'png':
+                                case 'jpg':
+                                case 'bmp':
+                                case 'jpeg':
+                                    previewImage = '<img src="' + msg + '" />';
+                                    break;
+                                default:
+                                    previewImage = msg;
+                                    break;
+                            }
+                            if (audioTag != '') {
+                                msg = audioTag;
+                            } else {
+                                msg = '<a href="' + msg + '" target="_black">' +
+                                        previewImage +
+                                        '</a>';
+                            }
+                        }
+                        str += '<div class="chat-row ' + senderReceiver + '" userid="' + data.Results[i].UserId + '"><div class="profile">' +
+                                        '<img alt="No image" src="<%=baseUrl %>' + data.Results[i].UserProfilePic + '" title="' + data.Results[i].UserFullname + '" />' +
+                                        '<div class="status-icon"></div><div class="installid">' +
+                                            '<a target="_blank" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>' +
+                                    '</div>' +
+                                    '<div class="message"><div class="msg">' + msg + '</div>' +
+                                    '<div class="time-container"><div class="tick">' +
+                                        '<img src="/img/double-grey-tick.png" /> </div>' +
+                                        '<div class="time">' + data.Results[i].MessageAtFormatted + '</div>' +
+                                        '<div class="est">(EST)</div> </div>' +
+                                    '</div></div>';
+                    });
+                }
+                if(!isNew) {
+                    $('.chat-box#' + id + ' .chats').append(str);
+                    bindChatScroll();
+                }
+                
+                $('.chat-box#' + id + ' .chats').find('.chat-row .message').each(function(i){
+                    if($(this).find('.msg > span').hasClass('auto-entry')){
+                        $(this).find('.msg > span').removeClass('auto-entry');
+                        $(this).addClass('auto-entry');
+                    }
+                    if($(this).find('.msg > span').hasClass('auto-entry-missed-call')){
+                        $(this).find('.msg > span').removeClass('auto-entry-missed-call');
+                        $(this).parents('.chat-row').addClass('auto-entry-missed-call');
+                    }
+                });
+                //$('.chat-box .chats').scrollTop(d.prop("scrollHeight"));
+                $('.chat-box#' + id + ' .chats').animate({ scrollTop: $('.chat-box#' + id + ' .chats').prop("scrollHeight") }, 500);
+
+                $('audio.chat-notification-sound').remove();
+
+                //
+                $('.chat-box .tabs-outer div.active').trigger('click');
+
+                if (loggedInUserId != data.Object.UserId) {
+                    $('body').append('<audio autoplay class="chat-notification-sound"><source src="/Chat/chat-notification.mp3"><source src="/Chat/chat-notification.ogg"></audio>');
+                    PageTitleNotification.Off();
+                    PageTitleNotification.On('New Message!!!', 1000);
+                    if (chat.server == undefined)
+                        chat = $.connection.chatHub;
+                    // Mark as Read to this message and notify other users by blue tick only if popup is open & maximize
+                    chat.server.setChatMessageRead(id, userChatGroupId);
+                }
+            }
+            console.log('msg send...');
+            GetOnlineUsers();
+            fillChatMemberList();
+        };
+        chat.client.addUserIntoChatGroupCallback = function (data) {
+            $('.emoji-wysiwyg-editor').html('');
+            var id = data.Object.split('`')[0];
+            var name = data.Object.split('`')[1];
+            var userId = data.Object.split('`')[2];
+            var userChatGroupId = data.Object.split('`')[3];
+            var receiverIds = $('.chat-box#' + id).find('#ReceiverIds').val().split(',');
+            receiverIds.push(userId);
+            $('.chat-box#' + id).find('#ReceiverIds').val(receiverIds.join(','));
+            $('.chat-box#' + id).find('#UserChatGroupId').val(userChatGroupId);
+            $('.chat-box#' + id + ' .chats').append('<div class="newUser">' + data.Message + '</div>');
+            $('.chat-box#' + id + ' .header').find('.group-name').html(name);
+            $('.chat-box#' + id + ' .chats').animate({ scrollTop: $('.chat-box#' + id + ' .chats').prop("scrollHeight") }, 500);
+            fillChatMemberList();
+            console.log('addUserIntoChatGroupCallback...');
+            GetOnlineUsers();
+        };
+        chat.client.removeChatGroupMemberCallback = function (data) {
+            var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+            $('.emoji-wysiwyg-editor').html('');
+            var id = data.Object.split('`')[0];
+            var name = data.Object.split('`')[1];
+            var userId = data.Object.split('`')[2];
+            var userChatGroupId = data.Object.split('`')[3];
+            var receiverIds = $('.chat-box#' + id).find('#ReceiverIds').val().split(',');
+            var newReceiverIds = [];
+            $.each(receiverIds, function (i) {
+                if (receiverIds[i] != userId) {
+                    newReceiverIds.push(receiverIds[i]);
+                }
+            });
+            if (loggedInUserId == userId) {
+                $('.chat-box#' + id).find('.chat-text').remove();
+            }
+            $('.chat-box#' + id).find('#ReceiverIds').val(newReceiverIds.join(','));
+            $('.chat-box#' + id).find('#UserChatGroupId').val(userChatGroupId);
+            $('.chat-box#' + id + ' .chats').append('<div class="newUser">' + data.Message + '</div>');
+            $('.chat-box#' + id + ' .header').find('.group-name').html(name);
+            $('.chat-box#' + id + ' .chats').animate({ scrollTop: $('.chat-box#' + id + ' .chats').prop("scrollHeight") }, 500);
+            fillChatMemberList();
+            console.log('removeChatGroupMemberCallback...');
+            GetOnlineUsers();
+        };
+        chat.client.leaveGroupCallback = function (data) {
+            var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+            $('.emoji-wysiwyg-editor').html('');
+            var id = data.Object.split('`')[0];
+            var name = data.Object.split('`')[1];
+            var userId = data.Object.split('`')[2];
+            var userChatGroupId = data.Object.split('`')[3];
+            var receiverIds = $('.chat-box#' + id).find('#ReceiverIds').val().split(',');
+            var newReceiverIds = [];
+            $.each(receiverIds, function (i) {
+                if (receiverIds[i] != userId) {
+                    newReceiverIds.push(receiverIds[i]);
+                }
+            });
+            if (loggedInUserId == userId) {
+                $('.chat-box#' + id).find('.chat-text').remove();
+                $('.member-list-container .member-list').html('');
+                $('.member-list-container').hide();
+            }
+            $('.chat-box#' + id).find('#ReceiverIds').val(newReceiverIds.join(','));
+            $('.chat-box#' + id).find('#UserChatGroupId').val(userChatGroupId);
+            $('.chat-box#' + id + ' .chats').append('<div class="newUser">' + data.Message + '</div>');
+            $('.chat-box#' + id + ' .header').find('.group-name').html(name);
+            $('.chat-box#' + id + ' .chats').animate({ scrollTop: $('.chat-box#' + id + ' .chats').prop("scrollHeight") }, 500);
+            console.log('leaveGroupCallback...');
+            GetOnlineUsers();
+        };
+        chat.client.closeChatCallback = function (data) {
+            if (data.Object) {
+                $('.chat-box#' + data.Message).remove();
+            }
+        };
+        chat.client.onConnectedCallback = function (data) {
+            //console.log(data);
+            //userChatStatus = data.Object;
+            console.log('onConnectedCallback...');
+            getOnlineActiveCount();
+            GetOnlineUsers();
+        }
+        chat.client.onDisconnectedCallback = function (data) {
+            console.log('onDisconnectedCallback...');
+            getOnlineActiveCount();
+            GetOnlineUsers();
+        }
+        chat.client.setChatUserStatusToIdleCallback = function (data) {
+            console.log('bind users = setChatUserStatusToIdleCallback');
+            GetOnlineUsers();
+        }
+        chat.client.setChatMessageReadCallback = function (data) {
+            SetChatMessageRead(data);
+        }
+        console.log('first = ' + userChatStatus);
+        var timer = null;
+        $(document).on('mousemove', function () {
+            console.log(userChatStatus);
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            if (userChatStatus == '<%= (int)JG_Prospect.Common.ChatUserStatus.Idle %>') {
+                chat.server.setChatUserStatusToIdle('<%= (int)JG_Prospect.Common.ChatUserStatus.Active %>');
+                userChatStatus = '<%= (int)JG_Prospect.Common.ChatUserStatus.Active %>';
+            } else {
+                // Reset Timeout
+                if (timer) {
+                    clearTimeout(timer); //cancel the previous timer.
+                    timer = null;
+                }
+                timer = setTimeout(function () {
+                    chat.server.setChatUserStatusToIdle('<%= (int)JG_Prospect.Common.ChatUserStatus.Idle %>');
+                    userChatStatus = '<%= (int)JG_Prospect.Common.ChatUserStatus.Idle %>';
+                }, 900000);
+            }
+        });
+        $(document).on('cilck', 'img.copy-paste-image', function () {
+            var anchor = '<a href="' + $(this) + '" target="_blank"></a>';
+        });
+        removeMember = function (sender, userId) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            chat.server.removeChatGroupMember($('.chat-box').find('#UserChatGroupId').val(), userId, $('.chat-box').find('#ChatGroupId').val());
+        }
+
+        leaveGroup = function (sender) {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            chat.server.leaveGroup($('.chat-box').find('#UserChatGroupId').val(), $('.chat-box').find('#ChatGroupId').val());
+        }
+
+        function LoadPreviousChat(sender, chatGroupId, receiverIds, chatSourceId, userChatGroupId, taskId, taskMultilevelListId, pageNum, pageSize, loadPrevious) {
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/LoadPreviousChat',
+                type: 'POST',
+                data: '{ receiverIds: "' + receiverIds + '", chatGroupId:"' + chatGroupId + '", chatSourceId:' + chatSourceId + ',userChatGroupId:' + userChatGroupId + ',taskId:'+taskId+',taskMultilevelListId:'+taskMultilevelListId+', pageNumber: '+ pageNum + ', pageSize:' + pageSize + ' }',
+                showThrobber: false,
+                throbberPosition: { my: "left center", at: "right center", of: $(sender), offset: "5 0" },
+                success: function (data, msg) {
+                    var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                    var str = '';
+                    $(data.Results).each(function (i) {
+                        var senderReceiver = loggedInUserId == data.Results[i].UserId ? 'sender' : 'receiver';
+                        var msg = data.Results[i].Message;
+                        var fileid = data.Results[i].FileId;
+                        var previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                        var audioTag = '';
+                        if (fileid != undefined && fileid != null && fileid != '') {
+
+                            var fileExt = (msg.split(':-:')[0].split('.').pop()).toLowerCase();
+                            switch (fileExt) {
+                                case 'xls':
+                                case 'xlsx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                    break;
+                                case 'html':
+                                case 'html':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                    break;
+                                case 'pdf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                    break;
+                                case 'txt':
+                                case 'rtf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                    break;
+                                case 'doc':
+                                case 'docx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                    break;
+                                case 'zip':
+                                case 'rar':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                    break;
+                                case 'mp3':
+                                case 'wav':
+                                case 'ogg':
+                                    audioTag = '<audio controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                    break;
+                                case 'mp4':
+                                case 'webm':
+                                    audioTag = '<video width="320" height="240" controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                    break;
+                                case 'png':
+                                case 'jpg':
+                                case 'bmp':
+                                case 'jpeg':
+                                case 'gif':
+                                    previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                                    break;
+                                default:
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/file.png" />';
+                                    break;
+                            }
+                            if (audioTag != '') {
+                                msg = audioTag;
+                            } else {
+                                msg = '<a href="/chat/attachments/' + msg.split(':-:')[1] + '" target="_black">' +
+                                        previewImage +
+                                        '</a>';
+                            }
+                        }
+                        if (ValidURL(msg.trim())) {
+                            var ext = (msg.split('.').pop()).toLowerCase();
+                            switch (ext) {
+                                case 'xls':
+                                case 'xlsx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                    break;
+                                case 'html':
+                                case 'html':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                    break;
+                                case 'pdf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                    break;
+                                case 'txt':
+                                case 'rtf':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                    break;
+                                case 'doc':
+                                case 'docx':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                    break;
+                                case 'zip':
+                                case 'rar':
+                                    previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                    break;
+                                case 'mp3':
+                                case 'wav':
+                                case 'ogg':
+                                    audioTag = '<audio controls><source src="' + msg + '"></audio>';
+                                    break;
+                                case 'mp4':
+                                case 'webm':
+                                    audioTag = '<video width="320" height="240" controls><source src="' + msg + '"></audio>';
+                                    break;
+                                case 'png':
+                                case 'jpg':
+                                case 'bmp':
+                                case 'jpeg':
+                                    previewImage = '<img src="' + msg + '" />';
+                                    break;
+                                default:
+                                    previewImage = msg;
+                                    break;
+                            }
+                            if (audioTag != '') {
+                                msg = audioTag;
+                            } else {
+                                msg = '<a href="' + msg + '" target="_black">' +
+                                        previewImage +
+                                        '</a>';
+                            }
+                        }
+                        str += '<div class="chat-row ' + senderReceiver + '" userid="' + data.Results[i].UserId + '"><div class="profile">' +
+                                        '<img alt="No image" src="<%=baseUrl %>' + data.Results[i].UserProfilePic + '" title="' + data.Results[i].UserFullname + '" />' +
+                                        '<div class="status-icon"></div><div class="installid">' +
+                                            '<a target="_blank" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>' +
+                                    '</div>' +
+                                    '<div class="message"><div class="msg">' + msg + '</div>' +
+                                    '<div class="time-container"><div class="tick">' +
+                                        '<img src="/img/double-grey-tick.png" /> </div>' +
+                                        '<div class="time">' + data.Results[i].MessageAtFormatted + '</div>' +
+                                        '<div class="est">(EST)</div> </div>' +
+                                    '</div></div>';
+
+                        <%--
+                        var fileid = data.Results[i].FileId;
+                        var msg = data.Results[i].Message;
+                        if (fileid != undefined && fileid != null && fileid != '') {
+                            msg = '<a href="/chat/attachments/' + msg.split(':-:')[1] + '" target="_black">' + msg.split(':-:')[0] + '</a>';
+                        }
+                        var tickColor = data.Results[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                        str += '<div class="chat-row ' + senderReceiver + '" userid="' + data.Results[i].UserId + '"><div class="profile">' +
+                                        '<img alt="No image" src="<%=baseUrl %>' + data.Results[i].UserProfilePic + '" title="' + data.Results[i].UserFullname + '" />' +
+                                        '<div class="status-icon"></div><div class="installid">' +
+                                            '<a target="_blank" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>' +
+                                    '</div>' +
+                                    '<div class="message"><div class="msg">' + msg + '</div>' +
+                                    '<div class="time-container"><div class="tick">' +
+                                        '<img src="/img/' + tickColor + '-tick.png" /> </div>' +
+                                        '<div class="time">' + data.Results[i].MessageAtFormatted + '</div>' +
+                                        '<div class="est">(EST)</div> </div>' +
+                                    '</div></div>';--%>
+                    });
+                    $('.chat-box#' + chatGroupId + ' .chats').prepend(str);
+                    $('.chat-box#' + chatGroupId + ' .chats').find('.chat-row .message').each(function(i){
+                        if($(this).find('.msg > span').hasClass('auto-entry')){
+                            $(this).find('.msg > span').removeClass('auto-entry');
+                            $(this).addClass('auto-entry');
+                        }
+                        if($(this).find('.msg > span').hasClass('auto-entry-missed-call')){
+                            $(this).find('.msg > span').removeClass('auto-entry-missed-call');
+                            $(this).parents('.chat-row').addClass('auto-entry-missed-call');
+                        }
+                    });
+                    //$('.chat-box .chats').scrollTop(d.prop("scrollHeight"));
+                    if(!loadPrevious){
+                        $('.chat-box#' + chatGroupId + ' .chats').animate({ scrollTop: $('.chat-box#' + chatGroupId + ' .chats').prop("scrollHeight") }, 500);
+                    }
+                    str = '';
+                }
+            });
+        }
+
+        function InitiateChat(sender, receiverIds, chatGroupId, chatSourceId, taskId, taskMultilevelListId, userChatGroupId) {
+            $('div.search-container').hide();
+            $('.search-box').val('');
+            $('#ChatSourceId').val(chatSourceId);
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateChat',
+                type: 'POST',
+                data: '{ receiverIds: "' + receiverIds + '", chatGroupId:"' + chatGroupId + '", chatSourceId:' + chatSourceId + ', taskId:' + taskId + ', taskMultilevelListId:' + taskMultilevelListId + ',userChatGroupId:' + userChatGroupId + ' }',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $(sender), offset: "5 0" },
+                success: function (data, msg) {
+                    // Close Previous Chat
+                    var chat = $('.chat-container .chat-box').find('span.close');
+                    closechat(chat);
+                    var id = data.Object.ChatGroupId;
+                    var name = data.Object.ChatGroupName;
+                    userChatGroupId = data.Message.split(':')[0];
+                    userChatGroupType = data.Message.split(':')[1];
+                    if (chat.server == undefined)
+                        chat = $.connection.chatHub;
+                    // Mark as Read to this message and notify other users by blue tick
+                    chat.server.setChatMessageRead(id, userChatGroupId);
+                    //$('.chat-container').show();
+                    if ($('#' + id).length <= 0) {
+                        $('.telecom-dashboard-popup').show();
+                        $('.telecom-dashboard-popup').removeClass('minimize');
+                        $('.overlay').show();
+                        // Calculate Center
+                        var sW = $(window).width();
+                        var pW = $('.telecom-dashboard-popup').width();
+                        var sH = $(window).height();
+                        var pH = $('.telecom-dashboard-popup').height();
+                        $('.telecom-dashboard-popup').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2)) + 'px' });
+                        window.scrollTo(0, 0);
+                        var strChat = '<div class="chat-box" id="' + id + '" style="display:block;">' +
+                                            '<div class="header"><span class="group-name">' + (taskId > 0 ? name.split(':')[1] : name) +
+                                                '</span><span class="close" onclick="closechat(this)"><i class="fa fa-times" aria-hidden="true"></i></span>' +
+                                                '<span class="member-list-container"><i class="fas fa-ellipsis-v" aria-hidden="true"></i><div class="member-list"></div></span>' +
+                                                '<span class="minimize" onclick="minimize(this)"><img src="/img/min-max.jpg" /></span>' +
+                                                '<span class="last-seen" title="last seen">' + data.Object.LastSeenAtFormated + '</span>' +
+                                                (taskId > 0 ?
+                                                '<div class="bottom-outer"><div class="checkbox-container">' +
+                                                '<div class="chk-box-inner red"></div><div class="chk-box-inner green"></div><div class="chk-box-inner black"></div>' +
+                                                '<div class="chk-box-inner blue"></div><div class="chk-box-inner orange"></div>' +
+                                                '</div>' +
+                                                '<div class="custom-name"><span>' + name.split(':')[0].split('<a')[0] + '</span><input type="text" placeholder="Chat Name" /></div>' +
+                                                '<div class="tabs-outer"><div vid=1 class="active">All</div><div vid=2>Query</div><div vid=3>Test Cases</div><div vid=4>HTML UI</div><div vid=5>Media</div><div vid=6>File & Docs</div><div vid=7>Links</div></div>' +
+                                                '<a' + name.split(':')[0].split('<a')[1] +
+                                                '</div>' : '') +
+
+                                              '</div>' +
+                                            '<input type="hidden" id="ChatGroupId" value="' + id + '" />' +
+                                            '<input type="hidden" id="TaskId" value="' + taskId + '" />' +
+                                            '<input type="hidden" id="TaskMultilevelListId" value="' + taskMultilevelListId + '" />' +
+                                            '<input type="hidden" id="ReceiverIds" value="' + receiverIds + '" />' +
+                                            '<input type="hidden" id="UserChatGroupId" value="' + userChatGroupId + '" />' +
+                                            '<input type="hidden" id="UserChatGroupType" value="' + userChatGroupType + '" />' +
+                                            '<input type="hidden" id="ChatSourceId" value="' + chatSourceId + '" />' +
+                                            '<div class="chats watermark-logo"></div>' +
+                                            '<div class="chat-text">' +
+                                                '<input type="text" data-emojiable="true" class="mention" placeholder="Say Something..." id="chattext" onkeyup="sendChat(event, this);"  />' +
+                                                '<button class="text-send" onclick="sendChat(event, this)">Send</button>' +
+                                                '<div class="file-send">Drop Files</div>' +
+                                                '<button class="record-send"><i class="fa fa-microphone" aria-hidden="true"></i></button>' +
+                                            '</div>' +
+                                       '</div>';
+                        $('.all-chats').append(strChat);
+                        // Append Old chats
+                        // Identify sender/receiver
+                        var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                        var str = '';
+                        $(data.Object.ChatMessages).each(function (i) {
+                            var senderReceiver = loggedInUserId == data.Object.ChatMessages[i].UserId ? 'sender' : 'receiver';
+                            var fileid = data.Object.ChatMessages[i].FileId;
+                            var msg = data.Object.ChatMessages[i].Message;
+                            var previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                            var audioTag = '';
+                            if (fileid != undefined && fileid != null && fileid != '') {
+                                var fileExt = (msg.split(':-:')[0].split('.').pop()).toLowerCase();
+                                switch (fileExt) {
+                                    case 'xls':
+                                    case 'xlsx':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                        break;
+                                    case 'html':
+                                    case 'html':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                        break;
+                                    case 'pdf':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                        break;
+                                    case 'txt':
+                                    case 'rtf':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                        break;
+                                    case 'doc':
+                                    case 'docx':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                        break;
+                                    case 'zip':
+                                    case 'rar':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                        break;
+                                    case 'mp3':
+                                    case 'wav':
+                                    case 'ogg':
+                                        audioTag = '<audio controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                        break;
+                                    case 'mp4':
+                                    case 'webm':
+                                        audioTag = '<video width="320" height="240" controls><source src="/chat/attachments/' + msg.split(':-:')[1] + '"></audio>';
+                                        break;
+                                    case 'png':
+                                    case 'jpg':
+                                    case 'bmp':
+                                    case 'jpeg':
+                                    case 'gif':
+                                        previewImage = '<img src="/chat/attachments/' + msg.split(':-:')[1] + '" />';
+                                        break;
+                                    default:
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/file.png" />';
+                                        break;
+                                }
+                                if (audioTag != '') {
+                                    msg = audioTag;
+                                } else {
+                                    msg = '<a href="/chat/attachments/' + msg.split(':-:')[1] + '" target="_black">' +
+                                            previewImage +
+                                            '</a>';
+                                }
+                            }
+                            if (ValidURL(msg.trim())) {
+                                var ext = (msg.split('.').pop()).toLowerCase();
+                                switch (ext) {
+                                    case 'xls':
+                                    case 'xlsx':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/excel.png" />';
+                                        break;
+                                    case 'html':
+                                    case 'html':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/html.png" />';
+                                        break;
+                                    case 'pdf':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/pdf.png" />';
+                                        break;
+                                    case 'txt':
+                                    case 'rtf':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/text.png" />';
+                                        break;
+                                    case 'doc':
+                                    case 'docx':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/word.png" />';
+                                        break;
+                                    case 'zip':
+                                    case 'rar':
+                                        previewImage = '<img class="chat-image-preview" src="/chat/previewIcons/zip.png" />';
+                                        break;
+                                    case 'mp3':
+                                    case 'wav':
+                                    case 'ogg':
+                                        audioTag = '<audio controls><source src="' + msg + '"></audio>';
+                                        break;
+                                    case 'mp4':
+                                    case 'webm':
+                                        audioTag = '<video width="320" height="240" controls><source src="' + msg + '"></audio>';
+                                        break;
+                                    case 'png':
+                                    case 'jpg':
+                                    case 'bmp':
+                                    case 'jpeg':
+                                        previewImage = '<img src="' + msg + '" />';
+                                        break;
+                                    default:
+                                        previewImage = msg;
+                                        break;
+                                }
+                                if (audioTag != '') {
+                                    msg = audioTag;
+                                } else {
+                                    msg = '<a href="' + msg + '" target="_black">' +
+                                            previewImage +
+                                            '</a>';
+                                }
+                            }
+                            var tickColor = data.Object.ChatMessages[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                            var welcomeEmailStatus = data.Object.ChatMessages[i].WelcomeEmailStatus.toString();
+                            if (welcomeEmailStatus != 0) {
+                                tickColor = welcomeEmailStatus;
+                            }
+                            str += '<div class="chat-row ' + senderReceiver + '" userid="' + data.Object.ChatMessages[i].UserId + '"><div class="profile">' +
+                                            '<img alt="No image" src="<%=baseUrl %>' + data.Object.ChatMessages[i].UserProfilePic + '" title="' + data.Object.ChatMessages[i].UserFullname + '" />' +
+                                        '<div class="status-icon"></div><div class="installid">' +
+                                            '<a target="_blank" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Object.ChatMessages[i].UserId + '">' + data.Object.ChatMessages[i].UserInstallId + '</a></div>' +
+                                    '</div>' +
+                                    '<div class="message"><div class="msg">' + msg + '</div>' +
+                                    '<div class="time-container"><div class="tick">' +
+                                        '<img src="/img/' + tickColor + '-tick.png" /> </div>' +
+                                        '<div class="time">' + data.Object.ChatMessages[i].MessageAtFormatted + '</div>' +
+                                        '<div class="est">(EST)</div> </div>' +
+                                    '</div></div>';
+                        });
+                        $('.chat-box#' + id + ' .chats').append(str);
+                        $('.chat-box#' + id + ' .chats').find('.chat-row .message').each(function(i){
+                            if($(this).find('.msg > span').hasClass('auto-entry')){
+                                $(this).find('.msg > span').removeClass('auto-entry');
+                                $(this).addClass('auto-entry');
+                            }
+                            if($(this).find('.msg > span').hasClass('auto-entry-missed-call')){
+                                $(this).find('.msg > span').removeClass('auto-entry-missed-call');
+                                $(this).parents('.chat-row').addClass('auto-entry-missed-call');
+                            }
+                        });
+                        //$('.chat-box .chats').scrollTop(d.prop("scrollHeight"));
+                        $('.chat-box#' + id + ' .chats').animate({ scrollTop: $('.chat-box#' + id + ' .chats').prop("scrollHeight") }, 500);
+                        console.log('Initiate chat...');
+                        GetOnlineUsers();
+                        InitializeEmoji();
+                        // GetPhoneScripts(sender);
+                        fillChatMemberList();
+                        $("#toNumber").intlTelInput();
+                        bindChatScroll();
+                    }
+                }
+            });
+        }
+        var currentFilterTab = '1';
+        function bindChatUsers(data, totalCounts) {
+            var totalCalls = totalCounts.split(':')[0];
+            var totalAutoEntries = totalCounts.split(':')[1];
+            var headerSearch = '<div class="outer-filter-search">' +
+                                        '<div class="search-outer"> <span>Contacts : </span>' +
+                                            '<input type="text" onkeyup="globalSearch(this)" placeholder="Search" class="search-box">' +
+                                            '<div class="search-container" style="display: none;"></div>' +
+                                        '</div>' +
+                                        '<div class="filter-outer">' +
+                                            '<div class="tab-inner" tid=1>All<span><i class="fas fa-ellipsis-v" aria-hidden="true"></i>' +
+                                                '<div class="context-outer">' +
+                                                    '<div class="row sortby" value="recent">Sort by Recent</div>' +
+                                                    '<div class="row sortby" value="unread">Sort by Unread</div>' +
+                                                    '<div class="row sortby" value="active">Sort by Active</div>' +
+                                                    '<div class="row read" value="read">Mark all as Read</div>' +
+                                                '</div>' +
+                                            '</span></div>' +
+                                            '<div class="tab-inner" tid=2>Chats<span><i class="fas fa-ellipsis-v" aria-hidden="true"></i>' +
+                                                '<div class="context-outer">' +
+                                                    '<div class="row sortby" value="recent">Sort by Recent</div>' +
+                                                    '<div class="row sortby" value="unread">Sort by Unread</div>' +
+                                                    '<div class="row sortby" value="active">Sort by Active</div>' +
+                                                    '<div class="row read border-bottom" value="read">Mark all as Read</div>' +
+                                                    '<div class="row filterBy" value="department">Filter by Department</div>' +
+                                                '</div>' +
+                                            '</span></div>' +
+                                            '<div class="tab-inner" tid=3>Groups<span><i class="fas fa-ellipsis-v" aria-hidden="true"></i>' +
+                                                '<div class="context-outer">' +
+                                                    '<div class="row sortby" value="recent">Sort by Recent</div>' +
+                                                    '<div class="row sortby" value="unread">Sort by Unread</div>' +
+                                                    '<div class="row sortby" value="active">Sort by Active</div>' +
+                                                    '<div class="row read" value="read">Mark all as Read</div>' +
+                                                '</div>' +
+                                            '</span></div>' +
+                                            '<div class="tab-inner" tid=4>Call/VMail<small>({1})<!--<span><i class="fas fa-ellipsis-v" aria-hidden="true"></i></span>--></div>' +
+                                            '<div class="tab-inner last" tid=5>Online<small>({1})</small><!--<span><i class="fas fa-ellipsis-v" aria-hidden="true"></i>' +
+                                                '<div class="context-outer">' +
+                                                    '<div class="row sortby" value="recent">Sort by Recent</div>' +
+                                                    '<div class="row sortby" value="unread">Sort by Unread</div>' +
+                                                    '<div class="row sortby" value="active">Sort by Active</div>' +
+                                                    '<div class="row read border-bottom" value="read">Mark all as Read</div>' +
+                                                    '<div class="row filterBy" value="department">Filter by Department</div>' +
+                                                '</div>-->' +
+                                            '</span></div>' +
+                                        '</div>' +
+                                    '</div>';
+            if (loggedInUserPrimaryStatus ==2 ||loggedInUserPrimaryStatus == 10 ||loggedInUserPrimaryStatus == 5
+                     ||loggedInUserPrimaryStatus == 6 ||loggedInUserPrimaryStatus == 16 
+                        ||loggedInUserPrimaryStatus == 17||loggedInUserPrimaryStatus == 18){
+                headerSearch='';
+                $('.search-box').remove();
+            }
+            data.Results = data.Object.ActiveUsers;
+            var total = 0;
+            var callsHeader = '<div class="logger">' +
+	                                '<div class="tabs">' +
+		                            '<div class="recent active">Recent</div>' +
+		                            '<div class="missed">Missed</div>' +
+		                            '<div class="vmail">VMail</div>';
+            if (loggedInUserDesginationId == 1 || loggedInUserDesginationId == 3 || loggedInUserDesginationId == 4 || loggedInUserDesginationId == 5
+				        || loggedInUserDesginationId == 6|| loggedInUserDesginationId == 21 || loggedInUserDesginationId == 22 || loggedInUserDesginationId == 23
+				        || loggedInUserDesginationId == 1034 || loggedInUserDesginationId == 1035)
+            {
+                callsHeader +='<div class="mngr">Manager</div>';
+            }
+            callsHeader +=   '</div>' +
+                        '</div>';
+
+            if (data.Results.length > 0) {
+                // Get this(logged in user) from Cookie
+                var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                var str = '';
+                var tempDids = [];
+                //tempDids.push(data.Results[0].DepartmentId);
+                $.each(data.Results, function (i) {
+                    total += data.Results[i].UnreadCount;
+                    // remove this(loggedin) user from lits
+                    if (loggedInUserId != data.Results[i].UserId) {
+                        var clr = data.Results[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                        //var chatStatus = data.Results[i].OnlineAt == null ? 'offline' : (data.Results[i].Status == '1' ? 'active' : 'idle');
+                        var chatStatus = data.Results[i].Status == '1' ? 'active' : data.Results[i].Status == '2' ? 'idle' : 'offline';
+                        if (oldFilterBy == 'department') {
+                            if (tempDids.indexOf(data.Results[i].DepartmentId) < 0) {
+                                if (i > 0) {
+                                    str += '<div class="bottom-row"><a onclick="viewMore(this, ' + data.Results[i - 1].DepartmentId + ',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + data.Results[i - 1].DepartmentId + ',2,0)" href="javascript:;">View All</a></div></div>';
+                                }
+                                str += '<div class="department-container" did="' + data.Results[i].DepartmentId + '"><div class="department-heading">' + data.Results[i].DepartmentName + ' - Department</div>';
+                                tempDids.push(data.Results[i].DepartmentId);
+                            }
+                        }
+                        if (oldType == 'online') {
+                            if (tempDids.indexOf(data.Results[i].InstallUserStatusId) < 0) {
+                                if (i > 0) {
+                                    str += '<div class="bottom-row"><a onclick="viewMore(this,\'\',2,1,'+data.Results[i - 1].InstallUserStatusId+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0,'+data.Results[i - 1].InstallUserStatusId+')" href="javascript:;">View All</a></div></div>';
+                                }
+                                str += '<div class="department-container" sid="' + data.Results[i].InstallUserStatusId + '"><div class="department-heading">' + primaryStatus[data.Results[i].InstallUserStatusId] + '</div>';
+                                tempDids.push(data.Results[i].InstallUserStatusId);
+                            }
+                        }
+                        var imageBox='';
+                        if(data.Results[i].ChatGroupType=='1'){
+                            imageBox='<div class="image-box">';
+                            var imageContent = data.Results[i].ChatGroupMemberImages.split('^');
+                            var groupImages='';
+                            $.each(imageContent, function(i){
+                                var imgdata = imageContent[i].split('@');
+                                if(imgdata[0]=='1'){
+                                    groupImages += '<img src="<%=baseUrl %>Employee/ProfilePictures/'+imgdata[1]+'" class="primary" />';
+                                }else{
+                                    groupImages += '<img src="<%=baseUrl %>Employee/ProfilePictures/'+imgdata[1]+'" class="secondary-'+i+'" />';
+                                }
+                            });
+                            imageBox +=groupImages+'</div>';
+                        }
+                        str += '<div title="' + data.Results[i].GroupOrUsername + '" class="row-' + i + ' user-row bg' + data.Results[i].InstallUserStatusId + '" userchatgroupid="'+data.Results[i].UserChatGroupId+'" uid="' + data.Results[i].UserId + '">' +
+                                    '<div onclick="InitiateChat(this, \'' + data.Results[i].ReceiverIds + '\', \'' + (data.Results[i].UserId == null ? data.Results[i].ChatGroupId : null) + '\',' + (parseInt(data.Results[i].TaskId) > 0 ? 2 : 10) + ',' + data.Results[i].TaskId + ',' + data.Results[i].TaskMultilevelListId + ',' + data.Results[i].UserChatGroupId + ')">'+
+                                    '<div class="profile">' +
+                                        (data.Results[i].ChatGroupType=='1'?imageBox:'<img alt="No image" src="<%=baseUrl %>'+data.Results[i].ProfilePic + '" />') +
+                                        (data.Results[i].UserId == null ? '' :
+                                        '<div class="status-icon ' + chatStatus + '"></div>' +
+                                        '<div class="installid"><a onclick="event.stopPropagation();" target="_blank" href="<%=baseUrl %>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>') +
+                                        (parseInt(data.Results[i].UnreadCount) > 0 ? '<span class="unread-chat-count">' + data.Results[i].UnreadCount + '</span>' : '') +
+                                        (parseInt(data.Results[i].TotalAutoEntries) > 0 ? '<span class="auto-entries-count">' + data.Results[i].TotalAutoEntries + '</span>' : '') +
+                        '</div>' +
+                        '<div class="contents" online-at="' + data.Results[i].OnlineAtFormatted + '">' +
+                            '<div class="top"><div class="name">' + (data.Results[i].GroupNameAnchor == '' ? data.Results[i].GroupOrUsername : data.Results[i].GroupNameAnchor) + ' - <a target="_blank" onclick="event.stopPropagation();" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '" title="<%=baseUrl%>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div></div>' +
+                                '<div class="msg-container">' +
+                                    (data.Results[i].LastMessageAtFormatted == null ? '' :
+                                    '<div class="tick"><img src="/img/' + clr + '-tick.png"></div>') +
+                                    '<div class="msg">' + data.Results[i].LastMessage.split(':-:')[0] + '</div>' +
+                                '</div></div></div>' +
+                                '<div class="caller">'+
+                                    '<div class="phone" title="Voice Call"><i class="fa fa-phone" aria-hidden="true"></i></div>' +
+		                            '<div class="email"><i class="fa fa-envelope" aria-hidden="true"></i></div>' +
+		                            '<div class="video" title="Video Call"><i class="fas fa-video" aria-hidden="true"></i></div>' +
+                                    '<div class="mic" title="Record Voice"><i class="fas fa-microphone" aria-hidden="true"></i></div>' +                                
+                                    '<div class="time">' + (data.Results[i].LastMessageAtFormatted == null ? '' : data.Results[i].LastMessageAtFormatted.split(' ')[0]) + '</div>' +
+                                    '<div class="last-login-time">' + ((data.Results[i].LastLoginAtFormatted != '' && data.Results[i].LastLoginAtFormatted != null) ? data.Results[i].LastLoginAtFormatted.split(' ')[0] : '') + '</div>' +
+                                '</div>' +
+                            '</div>';
+                    }
+                });
+                if (oldFilterBy == 'department') {
+                    str += '<div class="bottom-row"><a onclick="viewMore(this, ' + data.Results[data.Results.length - 1].DepartmentId + ',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + data.Results[data.Results.length - 1].DepartmentId + ',2,0)" href="javascript:;">View All</a></div></div>';
+                } else if(oldType == 'online'){
+                    str += '<div class="bottom-row"><a onclick="viewMore(this, \'\',2,1,'+data.Results[data.Results.length - 1].InstallUserStatusId+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0,'+data.Results[data.Results.length - 1].InstallUserStatusId+')" href="javascript:;">View All</a></div></div>';
+                } else{
+                    str += '<div class="bottom-row"><a onclick="viewMore(this, \'\',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0)" href="javascript:;">View All</a></div></div>';
+                }
+                
+
+                $('.chat-users-section .list').html(headerSearch + str);
+                // Bind Top Right Corner user list
+                str = '';
+                tempDids.length = 0;
+                //tempDids.push(data.Results[0].DepartmentId);
+                $.each(data.Results, function (i) {
+                    // remove this(loggedin) user from lits
+                    if (loggedInUserId != data.Results[i].UserId) {
+                        var clr = data.Results[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                        //var chatStatus = data.Results[i].OnlineAt == null ? 'offline' : (data.Results[i].Status == '1' ? 'active' : 'idle');
+                        var chatStatus = data.Results[i].Status == '1' ? 'active' : data.Results[i].Status == '2' ? 'idle' : 'offline';
+                        if (oldFilterBy == 'department') {
+                            if (tempDids.indexOf(data.Results[i].DepartmentId) < 0) {
+                                if (i > 0) {
+                                    str += '<div class="bottom-row"><a onclick="viewMore(this, ' + data.Results[i - 1].DepartmentId + ',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + data.Results[i - 1].DepartmentId + ',2,0)" href="javascript:;">View All</a></div></div>';
+                                }
+                                str += '<div class="department-container" did="' + data.Results[i].DepartmentId + '"><div class="department-heading">' + data.Results[i].DepartmentName + ' - Department</div>';
+                                tempDids.push(data.Results[i].DepartmentId);
+                            }
+                        }
+                        if (oldType == 'online') {
+                            if (tempDids.indexOf(data.Results[i].InstallUserStatusId) < 0) {
+                                if (i > 0) {
+                                    str += '<div class="bottom-row"><a onclick="viewMore(this,\'\',2,1,'+data.Results[i - 1].InstallUserStatusId+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0,'+data.Results[i - 1].InstallUserStatusId+')" href="javascript:;">View All</a></div></div>';
+                                }
+                                str += '<div class="department-container" sid="' + data.Results[i].InstallUserStatusId + '"><div class="department-heading">' + primaryStatus[data.Results[i].InstallUserStatusId] + '</div>';
+                                tempDids.push(data.Results[i].InstallUserStatusId);
+                            }
+                        }
+                        var imageBox='';
+                        if(data.Results[i].ChatGroupType=='1'){
+                            imageBox='<div class="image-box">';
+                            var imageContent = data.Results[i].ChatGroupMemberImages.split('^');
+                            var groupImages='';
+                            $.each(imageContent, function(i){
+                                var imgdata = imageContent[i].split('@');
+                                if(imgdata[0]=='1'){
+                                    groupImages += '<img src="<%=baseUrl %>Employee/ProfilePictures/'+imgdata[1]+'" class="primary" />';
+                                }else{
+                                    groupImages += '<img src="<%=baseUrl %>Employee/ProfilePictures/'+imgdata[1]+'" class="secondary-'+i+'" />';
+                                }
+                            });
+                            imageBox +=groupImages+'</div>';
+                        }
+                        str += '<div class="row-' + i + ' user-row row bg' + data.Results[i].InstallUserStatusId + '" title="' + data.Results[i].GroupOrUsername + '" userchatgroupid="'+data.Results[i].UserChatGroupId+'" uid="' + data.Results[i].UserId + '">' +
+                                '<div onclick="InitiateChat(this, \'' + data.Results[i].ReceiverIds + '\', \'' + (data.Results[i].UserId == null ? data.Results[i].ChatGroupId : null) + '\',' + (parseInt(data.Results[i].TaskId) > 0 ? 2 : 10) + ',' + data.Results[i].TaskId + ',' + data.Results[i].TaskMultilevelListId + ',' + data.Results[i].UserChatGroupId + ')">'+
+                                '<div class="user-image">' +
+                                    (data.Results[i].ChatGroupType=='1'?imageBox:'<img alt="No image" src="<%=baseUrl %>'+data.Results[i].ProfilePic + '" />') +
+                                    (data.Results[i].UserId == null ? '' :
+		                            '<div class="status-icon ' + chatStatus + '"></div>' +
+		                            '<div class="installid"><a onclick="event.stopPropagation();" target="_blank" href="<%=baseUrl %>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>') +
+                                    ((data.Results[i].UnreadCount) > 0 ? '<span class="unread-chat-count">' + data.Results[i].UnreadCount + '</span>' : '') +
+                                    (parseInt(data.Results[i].TotalAutoEntries) > 0 ? '<span class="auto-entries-count">' + data.Results[i].TotalAutoEntries + '</span>' : '') +
+                                '</div>' +
+	                            '<div class="contents">' +
+		                            '<div class="top"><div class="name">' + (data.Results[i].GroupNameAnchor == '' ? data.Results[i].GroupOrUsername : data.Results[i].GroupNameAnchor) + ' - <a target="_blank" onclick="event.stopPropagation();" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '" title="<%=baseUrl%>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div></div>' +
+		                            '<div class="msg-container">' +
+                                        (data.Results[i].LastMessageAtFormatted == null ? '' :
+			                            '<div class="tick"><img src="/img/' + clr + '-tick.png"></div>') +
+                                    '<div class="msg">' + data.Results[i].LastMessage.split(':-:')[0] + '</div>' +
+		                            '</div>' +
+	                            '</div></div>' +
+	                            '<div class="caller">' +
+		                            '<div class="phone" title="Voice Call"><i class="fa fa-phone" aria-hidden="true"></i></div>' +
+		                            '<div class="email"><i class="fa fa-envelope" aria-hidden="true"></i></div>' +
+		                            '<div class="video" title="Video Call"><i class="fas fa-video" aria-hidden="true"></i></div>' +
+                                    '<div class="mic" title="Record Voice"><i class="fas fa-microphone" aria-hidden="true"></i></div>' +
+                                    '<div class="time">' + ((data.Results[i].LastMessageAtFormatted != '' && data.Results[i].LastMessageAtFormatted != null) ? data.Results[i].LastMessageAtFormatted.split(' ')[0] : '') + '</div>' +
+                                    '<div class="last-login-time">' + ((data.Results[i].LastLoginAtFormatted != '' && data.Results[i].LastLoginAtFormatted != null) ? data.Results[i].LastLoginAtFormatted.split(' ')[0] : '') + '</div>' +
+	                            '</div>' +
+                            '</div>';
+                        // add unread count to ITDashboard Notes if any
+                        if (window.location.href.toLowerCase().indexOf('itdashboard.aspx') > 0) {
+                            var taskId = data.Results[i].TaskId;
+                            var taskMultilevelListId = data.Results[i].TaskMultilevelListId;
+                            $('.notes-section').each(function () {
+                                if ($(this).attr('taskid') == taskId && $(this).attr('taskmultilevellistid') == taskMultilevelListId) {
+                                    if (data.Results[i].UnreadCount > 0) {
+                                        $(this).find('span.unread-chat-count').remove();
+                                        $(this).prepend('<span class="unread-chat-count">' + data.Results[i].UnreadCount + '</span>');
+                                    } else {
+                                        $(this).find('span.unread-chat-count').remove();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+                if (oldFilterBy == 'department') {
+                    str += '<div class="bottom-row"><a onclick="viewMore(this, ' + data.Results[data.Results.length - 1].DepartmentId + ',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + data.Results[data.Results.length - 1].DepartmentId + ',2,0)" href="javascript:;">View All</a></div></div>';
+                }else if(oldType == 'online'){
+                    str += '<div class="bottom-row"><a onclick="viewMore(this, \'\',2,1,'+data.Results[data.Results.length - 1].InstallUserStatusId+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0,'+data.Results[data.Results.length - 1].InstallUserStatusId+')" href="javascript:;">View All</a></div></div>';
+                }else{
+                    str += '<div class="bottom-row"><a onclick="viewMore(this,\'\',2,1)" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this,\'\',2,0)" href="javascript:;">View All</a></div></div>';
+                }
+                if (total > 0) {
+                    $('.chatUnreadCount').show();
+                    $('.chatUnreadCount').html(total);
+                } else {
+                    $('.chatUnreadCount').hide();
+                }
+                if (totalAutoEntries > 0) {
+                    $('.chatAutoEntriesCount').show();
+                    $('.chatAutoEntriesCount').html(totalAutoEntries);
+                } else {
+                    $('.chatAutoEntriesCount').hide();
+                }
+                $('.header-msg').html(headerSearch + str);
+            } else {
+                var str = '<div class="no-user">No one is online!!!</div>'
+                $('.chat-users-section .list').html(headerSearch + str);
+                $('.header-msg').html(headerSearch + str);
+                //$('.chat-users-section .list').html('<div class="no-user">No one is online!!!</div>');
+                //$('.header-msg').html('<div class="no-user">No one is online!!!</div>');
+            }
+            $('.header-msg').hover(function () {
+                var H = ($(window).height() - 100) + 'px';
+                $('.header-msg').css('height', H);
+            }, function () {
+                $('.header-msg').css('height', '158px');
+            });
+            $('.filter-outer div.tab-inner[tid="' + currentFilterTab + '"]').addClass('active');
+            //var totalActive = $('.header-msg .user-row').find('.status-icon.active').length;
+            if(currentFilterTab==4){
+                $('.outer-filter-search').append(callsHeader);
+            }
+            getOnlineActiveCount();
+            $('.filter-outer div.tab-inner[tid="4"]').find('small').html('(' + totalCalls + ')');
+            $('.outer-filter-search .logger div.tabs > div').removeClass('active');
+            $('.outer-filter-search .logger div.tabs > div.'+oldCallType).addClass('active');
+        }
+
+
+        function SetChatMessageRead(data) {
+            var chatGroupId = data.Object.split('`')[0];
+            var isRead = data.Object.split('`')[1];
+            var welcomeEmailStatus = parseInt(data.Object.split('`')[2]);
+            var users = data.Message.split(',');
+
+
+            if (isRead == '1') {
+                $(users).each(function (i) {
+                    if (isRead == 1 && welcomeEmailStatus == 0) {
+                        $('#' + chatGroupId).find('.chat-row[userid="' + users[i] + '"]').find('.tick img').attr('src', '../img/double-blue-tick.png');
+                        $('#' + chatGroupId).find('.chat-row[userid="' + users[i] + '"]').find('.tick').addClass('read');
+                    } else if (welcomeEmailStatus > 0) {
+                        $('#' + chatGroupId).find('.chat-row[userid="' + users[i] + '"]').find('.tick img').attr('src', '../img/' + welcomeEmailStatus + '-tick.png');
+                        $('#' + chatGroupId).find('.chat-row[userid="' + users[i] + '"]').find('.tick').addClass('read');
+                    }
+                });
+            }
+            //GetChatUnReadCount();
+        }
+
+        function InitializeEmoji() {
+            // Initializes and creates emoji set from sprite sheet
+            window.emojiPicker = new EmojiPicker({
+                emojiable_selector: '[data-emojiable=true]',
+                assetsPath: '../Content/emoji-picker/lib/img/',
+                popupButtonClasses: 'fas fa-smile'
+            });
+            // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+            // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+            // It can be called as many times as necessary; previously converted input fields will not be converted again
+            window.emojiPicker.discover();
+            $('.emoji-wysiwyg-editor').attr({ 'onkeydown': "sendChat(event, this);", 'onkeyup': 'sendChatClear(event,this);' });
+            $('.emoji-wysiwyg-editor').removeClass('target');
+            $('.emoji-wysiwyg-editor').addClass('target');
+            // Add @Mention
+            //var existingText = $('input.mention').val();
+            $('.emoji-wysiwyg-editor.mention').parent().find('.mentions').remove();
+            $('.emoji-wysiwyg-editor.mention').parent().find('.mentions-autocomplete-list').remove();
+            var existingUsers = $('.chat-box').find('#ReceiverIds').val();
+            $('.emoji-wysiwyg-editor.mention').mentionsInput({
+                onDataRequest: function (mode, query, callback) {
+                    ajaxExt({
+                        url: '/WebServices/JGWebService.asmx/GetUsers',
+                        type: 'POST',
+                        data: '{ keyword: "' + query + '", userChatGroupId:' + userTobeAddedIntoUserChatGroupId + ' }',
+                        showThrobber: true,
+                        throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "5 0" },
+                        success: function (data, msg) {
+                            responseData = data.Results;
+                            responseData = _.filter(responseData, function (item) {
+                                return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+                            });
+                            callback.call(this, responseData);
+                        }
+                    });
+                }
+            });
+            //if (existingText != undefined && existingText != null) {
+            //    $('input.mention').val(existingText);
+            //}
+            var file = $('.file-send');
+            $(file).dropzone({
+                clickable: true,
+                maxFiles: 1,
+                url: "/chat/ChatAttachmentUpload.aspx",
+                thumbnailWidth: 30,
+                thumbnailHeight: 30,
+                init: function () {
+                    dzClosure = this;
+                    this.on("maxfilesexceeded", function (data) {
+                        alert('you are reached maximum attachment upload limit.');
+                    });
+                    // when file is uploaded successfully store its corresponding server side file name to preview element to remove later from server.
+                    this.on("success", function (file, response) {
+                        var chatSourceId = $('.telecom-dashboard-popup').find('#ChatSourceId').val();
+                        var taskId = $('.telecom-dashboard-popup').find('#TaskId').val();
+                        var taskMultilevelListId = $('.telecom-dashboard-popup').find('#TaskMultilevelListId').val();
+                        var userChatGroupId = $('.telecom-dashboard-popup').find('#UserChatGroupId').val();
+                        if (chat.server == undefined)
+                            chat = $.connection.chatHub;
+                        // Success coding goes here
+                        var filename = response.split("^");
+                        var originalName = filename[2];
+                        var displayName = filename[0];
+                        var fileId = filename[1];
+                        var chatId = $('.chat-box').find('#ChatGroupId').val();
+                        var receiverIds = $('.chat-box').find('#ReceiverIds').val();
+                        //$(file.previewTemplate).append('<span class="server_file">' + filename[0] + '</span>');
+                        chat.server.sendChatMessage(chatId, '', chatSourceId, receiverIds, fileId, taskId, taskMultilevelListId, userChatGroupId);
+                    });
+                    this.on("complete", function (file) {
+                        this.removeFile(file);
+                    });
+                }
+            });
+            //$('div.emoji-menu').off('click');
+        }
+
+        var emailTimer = setInterval(function () {
+            var frame = document.getElementById('iframe-inbox');
+            if (frame.contentWindow != null) {
+                if ($("#iframe-inbox").contents().find("#email") != null && $("#iframe-inbox").contents().find("#email") != undefined) {
+                    frame.contentWindow.postMessage('<%=UserId%>', '*');
+                    clearInterval(emailTimer);
+                }
+            }
+        }, 6000);
+
+        function sendChatClear(e, sender) {
+            var charCode = (typeof e.which === "number") ? e.which : e.keyCode;
+            if (charCode === 13) {
+                $(sender).html("");
+            }
+        }
+        function minimizeEmail(sender) {
+            if ($(sender).parents('.telecom-dashboard-popup').hasClass('fullscreen-email')) {
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-chat');
+                $(sender).parents('.telecom-dashboard-popup').find('.call-logs').hide();
+                $('.popup-title').html('ALL-Telecom Dashboard');
+            } else {
+                $(sender).parents('.telecom-dashboard-popup').addClass('fullscreen-email');
+                $(sender).parents('.telecom-dashboard-popup').removeClass('fullscreen-chat');
+                $(sender).parents('.telecom-dashboard-popup').find('.call-logs').hide();
+                $('.popup-title').html('Email Dashboard');
+            }
+        }
+
+        $('.telecom-dashboard-popup').draggable({ handle: "div.header" })
+                                     .resizable({
+                                         stop: function (event, ui) {
+
+                                         }
+                                     })
+        ;
+
+        function attachFile(sender) {
+            //   $('#form-attachment').find('input[type="file"]').trigger('click');
+        }
+
+        function minMax(sender) {
+            $('.telecom-dashboard-popup').toggleClass('minimize');
+            if ($('.telecom-dashboard-popup').hasClass('minimize')) {
+                $('.overlay').hide();
+            } else {
+                $('.overlay').show();
+                RecenterChatPopup();
+            }
+        }
+
+        function fullscreen(sender) {
+            $('.telecom-dashboard-popup').toggleClass('fullscreen');
+            if (!$('.telecom-dashboard-popup').hasClass('fullscreen')) {
+                RecenterChatPopup();
+            }
+        }
+
+        function fullscreenPhone(sender) {
+            $('.phone-dashboard').toggleClass('fullscreen');
+            if (!$('.phone-dashboard').hasClass('fullscreen')) {
+                RecenterChatPopup();
+            }
+        }
+
+        function minMaxPhone(sender) {
+            $('.phone-dashboard').toggleClass('minimize');
+            if ($('.phone-dashboard').hasClass('minimize')) {
+                $('.overlay').hide();
+            } else {
+                $('.overlay').show();
+                RecenterChatPopup();
+            }
+        }
+
+        function fullscreenPhone(sender) {
+            $('.phone-dashboard').toggleClass('fullscreen');
+            if (!$('.phone-dashboard').hasClass('fullscreen')) {
+                RecenterChatPopup();
+            }
+        }
+
+        function RecenterChatPopup() {
+            // Calculate Center
+            var sW = $(window).width();
+            var pW = $('.telecom-dashboard-popup').width();
+            var sH = $(window).height();
+            var pH = $('.telecom-dashboard-popup').height();
+            $('.telecom-dashboard-popup').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2)) + 'px' });
+
+            pW = $('.phone-dashboard').width();
+            pH = $('.phone-dashboard').height();
+            $('.phone-dashboard').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2)) + 'px' });
+            window.scrollTo(0, 0);
+        }
+
+        function GetOnlineUsers() {
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"' + oldSortBy + '",filterBy:"' + oldFilterBy + '",pageNumber:1, pageSize:15, departmentId:"", type:"' + oldType + '",markAllRead:false, userStatus:'+null+'}',
+                showThrobber: false,
+                throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "5 0" },
+                success: function (data, msg) {
+                    var obj = {
+                        Object: { ActiveUsers: data.Results }
+                    };
+                    console.log('bind users = GetOnlineUsers');
+                    bindChatUsers(obj, data.Message);
+                    $("#toNumber").intlTelInput();
+                    
+                }
+            });
+        }
+
+        function InitiateBlankChat(sender, box) {
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"recent",filterBy:"",pageNumber:1, pageSize:15, departmentId:"", type:"all",markAllRead:false, userStatus:'+null+'}',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $(sender), offset: "5 0" },
+                success: function (data, msg) {
+                    $('.phone-dashboard').hide();
+                    // Close Previous Chat
+                    $('.call-logs').hide();
+                    var chat = $('.chat-container .chat-box').find('span.close');
+                    closechat(chat);
+                    $('.telecom-dashboard-popup').show();
+                    $('.overlay').show();
+                    RecenterChatPopup();
+                    var obj = {
+                        Object: { ActiveUsers: data.Results }
+                    };
+                    console.log('bind users = InitiateBlankChat');
+                    bindChatUsers(obj, data.Message);
+                    switch (box) {
+                        case 'email':
+                            $('.email-section').find('.minimize').trigger('click');
+                            break;
+                        case 'chat':
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-phone');
+                            $('.telecom-dashboard-popup').addClass('fullscreen-chat');
+                            $('.telecom-dashboard-popup').find('.popup-title').html('Chat Dashboard');
+                            $('.chat-users-section .list div.row-0 > div:nth-child(1)').trigger('click');
+                            break;
+                        case 'phone':
+                            //GetPhoneScripts(sender);
+                            $('.call-logs').show();
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-chat');
+                            $('.telecom-dashboard-popup').addClass('fullscreen-phone');
+                            $('.telecom-dashboard-popup').find('.popup-title').html('Phone / VMail Dashboard');
+                            break;
+                        case 'all':
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-email');
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-chat');
+                            $('.telecom-dashboard-popup').removeClass('fullscreen-phone');
+                            $('.telecom-dashboard-popup').find('.popup-title').html('All Telecom Dashboard');
+                            $('.chat-users-section .list div.row-0 > div:nth-child(1)').trigger('click');
+                            break;
+                    }
+                    $("#toNumber").intlTelInput();
+                }
+            });
+        }
+
+        function minimizePhone(sender) {
+            openPhoneDashboard(sender);
+        }
+
+        function loadEmailIFrame() {
+            $("#iframe-inbox").attr("src", "https://web.jmgrovebuildingsupply.com/email/default.aspx");
+            setTimeout(function () {
+                $("#iframe-inbox").attr("src", "https://web.jmgrovebuildingsupply.com/email/default.aspx");
+            }, 3000);
+        }
+        function fillChatMemberList() {
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/GetChatGroupMembers',
+                type: 'POST',
+                data: '{UserChatGroupId:' + $('.chat-box').find('#UserChatGroupId').val() + ',SenderUserId:"' + $('.chat-box').find('#ReceiverIds').val() + '"}',
+                showThrobber: false,
+                success: function (data, msg) {
+                    var str = '';
+                    $.each(data.Results, function (i) {
+                        str += '<div class="row"><div>' + data.Results[i].GroupOrUsername + '</div><div title="remove" onclick="removeMember(this,' + data.Results[i].UserId + ')"><i class="fas fa-trash-alt"></i></div></div>';
+                    });
+                    //var receivers = $('.chat-box').find('#ReceiverIds').val().split(',');
+                    str += '<div class="row leave-group"><div onclick="leaveGroup(this)">Leave Group</div></div>';
+                    if (str != '' && parseInt($('.chat-box').find('#UserChatGroupId').val()) > 0/* && receivers.length > 1*/) {
+                        $('.member-list-container div.member-list').html(str);
+                        $('.member-list-container').show();
+                    } else if (parseInt($('.chat-box').find('#UserChatGroupId').val()) <= 0) {
+                        $('.member-list-container').hide();
+                        $('.chat-box').find('.last-seen').html(data.Message);
+                    }
+                }
+            });
+        }
+        var phonePopupHeight = 0;
+        function openPhoneDashboard(sender) {
+            $('.phone-dashboard').find('iframe').contents().find("body").html('');
+            $('.telecom-dashboard-popup').hide();
+            $('.overlay').show();
+            $('.phone-dashboard').show();
+            // Calculate Center
+            var sW = $(window).width();
+            var pW = $('.phone-dashboard').width();
+            var sH = $(window).height();
+            sH = sH * (0.95);
+            sH = sH < 650 ? 650 : sH;
+            $('.phone-dashboard').css('height', (sH - 50) + 'px');
+            var pH = $('.phone-dashboard').height();
+            $('.phone-dashboard iframe').css('height', (pH - 42) + 'px');
+            phonePopupHeight = pH;
+            //$('.auto-dialer-bottom-section').css('height', (pH - 320) + 'px');
+            if(phonePopupHeight <= 600){
+                $('.phone-dashboard').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2) - 20) + 'px' });
+            }else{
+                $('.phone-dashboard').css({ 'left': ((sW / 2) - (pW / 2)) + 'px', 'top': ((sH / 2) - (pH / 2)) + 'px' });
+            }
+            $('.phone-dashboard').find('iframe').attr('src', '/sr_app/autodialer.aspx');
+        }
+
+        function closePhonePopup(sender) {
+            $('.overlay').hide();
+            $('.phone-dashboard').hide();
+        }
+        $(document).ready(function () {
+            //loadEmailIFrame();
+            if (window.location.href.toLowerCase().indexOf('autodialer.aspx') <= 0) {
+                resetSettings();
+                initPhone();                
+            }
+        });
+        function globalSearch(sender) {
+            var keyword = $(sender).val().trim();
+            if (keyword != '')
+                ajaxExt({
+                    url: '/WebServices/JGWebService.asmx/GlobalSearch',
+                    type: 'POST',
+                    data: '{keyword:"' + keyword + '"}',
+                    showThrobber: true,
+                    abort: true,
+                    throbberPosition: { my: "left center", at: "right center", of: $(sender), offset: "-25 0" },
+                    success: function (data, msg) {
+                        var first = '<div class="search-inner-box"><div class="title">Search By First Name</div>';
+                        var last = '<div class="search-inner-box"><div class="title">Search By Last Name</div>';
+                        var email = '<div class="search-inner-box"><div class="title">Search By Email</div>';
+                        $.each(data.Object.SearchUsersByFirstName, function (i) {
+                            first += '<div onclick="InitiateChat(this, ' + data.Object.SearchUsersByFirstName[i].Id + ', null,10,0,0,0)" class="row" uid="' + data.Object.SearchUsersByFirstName[i].Id + '">' + data.Object.SearchUsersByFirstName[i].Fullname + '</div>';
+                        });
+                        first += '</div>';
+                        $.each(data.Object.SearchUsersByLastName, function (i) {
+                            last += '<div onclick="InitiateChat(this, ' + data.Object.SearchUsersByLastName[i].Id + ', null,10,0,0,0)" class="row" uid="' + data.Object.SearchUsersByLastName[i].Id + '">' + data.Object.SearchUsersByLastName[i].Fullname + '</div>';
+                        });
+                        last += '</div>';
+                        $.each(data.Object.SearchUsersByEmail, function (i) {
+                            email += '<div onclick="InitiateChat(this, ' + data.Object.SearchUsersByEmail[i].Id + ', null,10,0,0,0)" class="row" uid="' + data.Object.SearchUsersByEmail[i].Id + '">' + data.Object.SearchUsersByEmail[i].Email + '</div>';
+                        });
+                        email += '</div>';
+
+                        $(sender).parent().find('div.search-container').html(first + last + email);
+                        $(sender).parent().find('div.search-container').show();
+                    }
+                });
+            else
+                $(sender).parent().find('div.search-container').html('');
+            $(sender).parent().find('div.search-container').hide();
+        }
+
+        $(document).mouseup(function (e) {
+            var container = $("div.search-container,.custom-name input[type='text']");
+
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.hide();
+                $('.custom-name span').show();
+            }
+        });
+        $(document).on('click', '.tabs-outer div', function () {
+            var sender = $(this);
+            var id = parseInt($(this).attr('vid'));
+            switch (id) {
+                case 1:
+                    $('.tabs-outer div').removeClass('active');
+                    $(sender).addClass('active');
+                    $('div.chat-box div.chats div.chat-row').show();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5: // Media
+                    $('.tabs-outer div').removeClass('active');
+                    $(sender).addClass('active');
+                    $('div.chat-box div.chats div.chat-row').hide();
+                    $('.chat-box').find('.chat-row').each(function () {
+                        var msg = $(this).find('.message > .msg').html();
+                        if (msg.indexOf('<audio') >= 0 || msg.indexOf('<video') >= 0) {
+                            $(this).show();
+                        } else if (msg.indexOf('<a ') >= 0) {
+                            var ext = $(this).find('.message > .msg').find('a').attr('href').split('.').pop().toLowerCase();
+                            if (ext == 'png' || ext == 'jpg' || ext == 'jpeg' || ext == 'bmp' || ext == 'gif') {
+                                $(this).show();
+                            }
+                        }
+                    });
+                    break;
+                case 6: // files & docs
+                    $('.tabs-outer div').removeClass('active');
+                    $(sender).addClass('active');
+                    $('div.chat-box div.chats div.chat-row').hide();
+                    $('.chat-box').find('.chat-row').each(function () {
+                        var msg = $(this).find('.message > .msg').html();
+                        if (msg.indexOf('<a ') >= 0) {
+                            var img = $(this).find('.message > .msg').find('a').find('.chat-image-preview');
+                            if (img.length > 0) {
+                                $(this).show();
+                            }
+                        }
+                    });
+                    break;
+                case 7: // Links
+                    $('.tabs-outer div').removeClass('active');
+                    $(sender).addClass('active');
+                    $('div.chat-box div.chats div.chat-row').hide();
+                    $('.chat-box').find('.chat-row').each(function () {
+                        var msg = $(this).find('.message > .msg').html();
+                        if (msg.indexOf('<a ') >= 0) {
+                            var img = $(this).find('.message > .msg').find('a').find('.chat-image-preview');
+                            if (msg.indexOf('<a ') >= 0) {
+                                var ext = $(this).find('.message > .msg').find('a').attr('href').split('.').pop().toLowerCase();
+                                if (ext != 'png' && ext != 'jpg' && ext != 'jpeg' && ext != 'bmp' && ext != 'gif' && img.length <= 0) {
+                                    $(this).show();
+                                }
+                            }
+                        }
+                    });
+                    break;
+            }
+        });
+
+        $(document).on('click', '.group-name .chk-box-outer', function () {
+            if (chat.server == undefined)
+                chat = $.connection.chatHub;
+            var chatGrpId = $('.chat-box').find('#ChatGroupId').val();
+            var receiverIds = $('.chat-box').find('#ReceiverIds').val();
+            var chatSourceId = $('#ChatSourceId').val();
+            var taskId = $('#TaskId').val();
+            var taskMultilevelListId = $('#TaskMultilevelListId').val();
+            var userChatGroupId = $('#UserChatGroupId').val();
+            var chatText = '{UserTaskStepCompletedText}';
+            if (receiverIds != '' && receiverIds != null && chatSourceId != '' && chatSourceId != null) {
+                chat.server.sendChatMessage(chatGrpId, chatText, chatSourceId, receiverIds, null, taskId, taskMultilevelListId, userChatGroupId);
+                if ($(this).find('input[type="checkbox"]').is(':checked')) {
+                    $(this).addClass('checked');
+                } else {
+                    $(this).removeClass('checked');
+                }
+            }
+        });
+
+        $(document).on('dblclick', '.custom-name span', function () {
+            $(this).parents('.custom-name').find('input[type="text"]').show();
+            $(this).hide();
+        });
+
+        $(document).keyup(function (e) {
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            if (code == 27) {// Esc key, cancel changes
+                $('.chat-box').find('.custom-name').find('span').show();
+                $('.chat-box').find('.custom-name').find('input[type="text"]').val('');
+                $('.chat-box').find('.custom-name').find('input[type="text"]').hide();
+                e.preventDefault();
+            }
+        });
+
+        $(document).on('keyup', '.custom-name input[type="text"]', function (e) {
+            var text = $(this).val().trim();
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            if (code == 13) { // enter key
+                $(this).parents('.custom-name').find('span').show();
+                $(this).hide();
+                $(this).parents('.custom-name').find('span').html(text);
+                e.preventDefault();
+                ajaxExt({
+                    url: '/WebServices/JGWebService.asmx/ChangeTaskChatTitle',
+                    type: 'POST',
+                    data: '{TaskId:' + $('#TaskId').val() + ',TaskMultilevelListId:' + $('#TaskMultilevelListId').val() + ',Title:"' + text + '"}',
+                    showThrobber: true,
+                    throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "-25 0" },
+                    success: function (data, msg) {
+
+                    }
+                });
+            } else if (code == 27) {// Esc key, cancel changes
+                $(this).parents('.custom-name').find('span').show();
+                $(this).val('');
+                $(this).hide();
+                e.preventDefault();
+            }
+        });
+
+        $(document).on('click', '.filter-outer div.tab-inner', function () {
+            var type = $(this).attr('tid');
+            var sortBy = 'recent';
+            oldCallType = sortBy;
+            var filterBy = '';
+            switch (type) {
+                case '1':
+                    type = 'all';
+                    break;
+                case '2':
+                    type = 'chats';
+                    break;
+                case '3':
+                    type = 'groups';
+                    break;
+                case '4':
+                    type = 'calls';
+                    break;
+                case '5':
+                    type = 'online';
+                    break;
+            }
+            oldSortBy = sortBy;
+            oldFilterBy = filterBy;
+            oldType = type;
+            currentFilterTab = $(this).attr('tid');
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"' + sortBy + '",filterBy:"' + filterBy + '",pageNumber:1, pageSize:15, departmentId:"", type:"' + type + '",markAllRead:false, userStatus:'+null+'}',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "5 0" },
+                success: function (data, msg) {
+                    var obj = {
+                        Object: { ActiveUsers: data.Results }
+                    };
+                    console.log('bind users = filter-outer div.context-outer .row');
+                    bindChatUsers(obj,data.Message);
+                }
+            });
+        });
+
+        $(document).on('click', '.outer-filter-search .logger div.tabs > div', function () {
+            var $this = $(this);
+            $('.outer-filter-search .logger div.tabs > div').removeClass('active');
+            var callType = $($this).attr('class');
+            if(callType=='vmail'){
+                return false;            }
+            var type = 'calls';
+            var filterBy = '';
+            oldSortBy = oldCallType = callType;
+            oldFilterBy = filterBy;
+            oldType = type;
+            //currentFilterTab = $(this).attr('tid');
+            
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"' + callType + '",filterBy:"' + filterBy + '",pageNumber:1, pageSize:15, departmentId:"", type:"' + type + '",markAllRead:false, userStatus:'+null+'}',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $($this), offset: "5 0" },
+                success: function (data, msg) {
+                    var obj = {
+                        Object: { ActiveUsers: data.Results }
+                    };
+                    console.log('bind users = filter-outer div.context-outer .row');
+                    bindChatUsers(obj,data.Message);
+                }
+            });
+        });
+
+        $(document).on('click', '.filter-outer div.context-outer .row', function (e) {
+            e.stopPropagation();
+            var read = $(this).hasClass('read') ? true : false;
+            var sortBy = read == true ? oldSortBy : $(this).hasClass('sortby') ? $(this).attr('value') : 'recent';
+            var filterBy = read == true ? oldFilterBy : $(this).hasClass('filterBy') ? $(this).attr('value') : '';
+            var type = $(this).parents('.tab-inner').attr('tid');
+
+            switch (type) {
+                case '1':
+                    type = 'all';
+                    break;
+                case '2':
+                    type = 'chats';
+                    break;
+                case '3':
+                    type = 'groups';
+                    break;
+                case '4':
+                    type = 'calls';
+                    break;
+                case '5':
+                    type = 'online';
+                    break;
+            }
+            oldSortBy = sortBy;
+            oldFilterBy = filterBy;
+            oldType = type;
+            currentFilterTab = $(this).parents('.tab-inner').attr('tid');
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"' + sortBy + '",filterBy:"' + filterBy + '",pageNumber:1, pageSize:15, departmentId:"", type:"' + type + '",markAllRead:' + read + ', userStatus:'+null+'}',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "5 0" },
+                success: function (data, msg) {
+                    var obj = {
+                        Object: { ActiveUsers: data.Results }
+                    };
+                    console.log('bind users = filter-outer div.context-outer .row');
+                    bindChatUsers(obj,data.Message);
+                }
+            });
+        });
+
+        function getOnlineActiveCount(){
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/GetOnlineActiveCount',
+                type: 'POST',
+                data: '{}',
+                showThrobber: false,
+                throbberPosition: { my: "left center", at: "right center", of: $(this), offset: "5 0" },
+                success: function (data, msg) {
+                    var activeCount= data.Object;
+                    $('.filter-outer div.tab-inner.last').html('Online<small>(' + activeCount + ')</small>');
+                }
+            });
+        }
+
+        function viewMore(sender, did, pageNum, pageView, userStatus) {
+            var pageSize = 15;
+            if (pageView == 0) {
+                pageSize = 9999;
+                pageNum = 1;
+            }
+            if(did==''){
+                did=null;
+            }
+            if(userStatus=='' || userStatus==undefined || userStatus == 0){
+                userStatus = null;
+            }
+            ajaxExt({
+                url: '/WebServices/JGWebService.asmx/InitiateBlankChat',
+                type: 'POST',
+                data: '{sortBy:"' + oldSortBy + '",filterBy:"' + oldFilterBy + '",pageNumber:' + pageNum + ', pageSize:' + pageSize + ', departmentId:' + did + ', type:"' + oldType + '",markAllRead:false, userStatus:'+userStatus+'}',
+                showThrobber: true,
+                throbberPosition: { my: "left center", at: "right center", of: $(sender), offset: "5 0" },
+                success: function (data, msg) {
+                    if (data.Results.length > 0) {
+                       
+                        // Get this(logged in user) from Cookie
+                        var loggedInUserId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                        var str = '';
+                        var tempDids = [];
+                        total = $('.chatUnreadCount').is(':visible') ? parseInt($('.chatUnreadCount').html().trim()) : 0;
+                        //tempDids.push(data.Results[0].DepartmentId);
+                        if ($('.telecom-dashboard-popup').is(':visible')) {
+                            $.each(data.Results, function (i) {
+                                total += data.Results[i].UnreadCount;
+                                // remove this(loggedin) user from lits
+                                if (loggedInUserId != data.Results[i].UserId) {
+                                    var clr = data.Results[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                                    //var chatStatus = data.Results[i].OnlineAt == null ? 'offline' : (data.Results[i].Status == '1' ? 'active' : 'idle');
+                                    var chatStatus = data.Results[i].Status == '1' ? 'active' : data.Results[i].Status == '2' ? 'idle' : 'offline';
+                                    str += '<div title="' + data.Results[i].GroupOrUsername + '" class="user-row bg' + data.Results[i].InstallUserStatusId + '" userchatgroupid="'+data.Results[i].UserChatGroupId+'" uid="' + data.Results[i].UserId + '">' +
+                                                '<div onclick="InitiateChat(this, \'' + data.Results[i].ReceiverIds + '\', \'' + (data.Results[i].UserId == null ? data.Results[i].ChatGroupId : null) + '\',' + (parseInt(data.Results[i].TaskId) > 0 ? 2 : 10) + ',' + data.Results[i].TaskId + ',' + data.Results[i].TaskMultilevelListId + ',' + data.Results[i].UserChatGroupId + ')">'+
+                                                    '<div class="profile">' +
+                                                    '<img alt="No image" src="<%=baseUrl %>' + data.Results[i].ProfilePic + '" title="">' +
+                                                        (data.Results[i].UserId == null ? '' :
+                                                        '<div class="status-icon ' + chatStatus + '"></div>' +
+                                                        '<div class="installid"><a href="#">' + data.Results[i].UserInstallId + '</a></div>') +
+                                                        (parseInt(data.Results[i].UnreadCount) > 0 ? '<span class="unread-chat-count">' + data.Results[i].UnreadCount + '</span>' : '') +
+                                                        (parseInt(data.Results[i].TotalAutoEntries) > 0 ? '<span class="auto-entries-count">' + data.Results[i].TotalAutoEntries + '</span>' : '') +
+                                                    '</div>' +
+                                                    '<div class="contents" online-at="' + data.Results[i].OnlineAtFormatted + '">' +
+                                                        '<div class="top"><div class="name">' + (data.Results[i].GroupNameAnchor == '' ? data.Results[i].GroupOrUsername : data.Results[i].GroupNameAnchor) + ' - <a target="_blank" onclick="event.stopPropagation();" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '" title="<%=baseUrl%>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div>' +
+                                                        '</div>' +
+                                                        '<div class="msg-container">' +
+                                                            (data.Results[i].LastMessageAtFormatted == null ? '' :
+                                                            '<div class="tick"><img src="/img/' + clr + '-tick.png"></div>') +
+                                                            '<div class="msg">' + data.Results[i].LastMessage.split(':-:')[0] + '</div>' +
+                                                        '</div>' +
+                                                    '</div></div>'+
+                                                    '<div class="caller">' +
+		                                                '<div class="phone" title="Voice Call"><i class="fa fa-phone" aria-hidden="true"></i></div>' +
+		                                                '<div class="email"><i class="fa fa-envelope" aria-hidden="true"></i></div>' +
+		                                                '<div class="video" title="Video Call"><i class="fas fa-video" aria-hidden="true"></i></div>' +
+                                                        '<div class="mic" title="Record Voice"><i class="fas fa-microphone" aria-hidden="true"></i></div>' +
+                                                        '<div class="time">' + ((data.Results[i].LastMessageAtFormatted != '' && data.Results[i].LastMessageAtFormatted != null) ? data.Results[i].LastMessageAtFormatted.split(' ')[0] : '') + '</div>' +
+                                                        '<div class="last-login-time">' + ((data.Results[i].LastLoginAtFormatted != '' && data.Results[i].LastLoginAtFormatted != null) ? data.Results[i].LastLoginAtFormatted.split(' ')[0] : '') + '</div>' +
+	                                                '</div>' +
+                                                '</div>';
+                                }
+                            });
+                            if (pageView == 0 && (did != null || userStatus != null)) {
+                                var heading = $(sender).parents('.department-container').find('div.department-heading').html();
+                                str = '<div class="department-heading">' + heading + '</div>' + str;
+                                $(sender).parents('.department-container').html(str);
+                                $(sender).parents('.bottom-row').remove();
+                            }else if (pageView == 0){
+                                $(sender).parents('.chat-users-section .list').find('div.user-row').remove();
+                                $(sender).parents('.chat-users-section .list').append(str);
+                                $(sender).parents('.bottom-row').remove();
+                            }else {
+                                str += '<div class="bottom-row"><a onclick="viewMore(this, ' + did + ',' + (pageNum + 1) + ',1,'+userStatus+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + did + ',' + (pageNum + 1) + ',0,'+userStatus+')" href="javascript:;">View All</a></div>';
+                                $(str).insertBefore($(sender).parents('.bottom-row'));
+                                $(sender).parents('.bottom-row').remove();
+                            }
+                        } else {
+                            $.each(data.Results, function (i) {
+                                total += data.Results[i].UnreadCount;
+                                // remove this(loggedin) user from lits
+                                if (loggedInUserId != data.Results[i].UserId) {
+                                    var clr = data.Results[i].IsRead.toString().toLowerCase() == 'true' ? 'double-blue' : 'double-grey';
+                                    //var chatStatus = data.Results[i].OnlineAt == null ? 'offline' : (data.Results[i].Status == '1' ? 'active' : 'idle');
+                                    var chatStatus = data.Results[i].Status == '1' ? 'active' : data.Results[i].Status == '2' ? 'idle' : 'offline';
+                                    str += '<div class="user-row row bg' + data.Results[i].InstallUserStatusId + '" title="' + data.Results[i].GroupOrUsername + '" userchatgroupid="'+data.Results[i].UserChatGroupId+'" uid="' + data.Results[i].UserId + '">' +
+                                        '<div onclick="InitiateChat(this, \'' + data.Results[i].ReceiverIds + '\', \'' + (data.Results[i].UserId == null ? data.Results[i].ChatGroupId : null) + '\',' + (parseInt(data.Results[i].TaskId) > 0 ? 2 : 10) + ',' + data.Results[i].TaskId + ',' + data.Results[i].TaskMultilevelListId + ',' + data.Results[i].UserChatGroupId + ')">'+
+                                        '<div class="user-image">' +
+                                            '<div class="img">' +
+                                                '<img alt="No image" src="<%=baseUrl %>' + data.Results[i].ProfilePic + '"></div>' +
+                                                (data.Results[i].UserId == null ? '' :
+                                                '<div class="status-icon ' + chatStatus + '"></div>' +
+                                                '<div class="installid"><a href="javascript:;">' + data.Results[i].UserInstallId + '</a></div>') +
+                                                ((data.Results[i].UnreadCount) > 0 ? '<span class="unread-chat-count">' + data.Results[i].UnreadCount + '</span>' : '') +
+                                                (parseInt(data.Results[i].TotalAutoEntries) > 0 ? '<span class="auto-entries-count">' + data.Results[i].TotalAutoEntries + '</span>' : '') +
+                                            '</div>' +
+                                            '<div class="contents">' +
+                                                '<div class="top"><div class="name">' + (data.Results[i].GroupNameAnchor == '' ? data.Results[i].GroupOrUsername : data.Results[i].GroupNameAnchor) + ' - <a target="_blank" onclick="event.stopPropagation();" href="/Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '" title="<%=baseUrl%>Sr_App/ViewSalesUser.aspx?id=' + data.Results[i].UserId + '">' + data.Results[i].UserInstallId + '</a></div></div>' +
+                                                '<div class="msg-container">' +
+                                                    (data.Results[i].LastMessageAtFormatted == null ? '' :
+                                                    '<div class="tick"><img src="/img/' + clr + '-tick.png"></div>') +
+                                                '<div class="msg">' + data.Results[i].LastMessage.split(':-:')[0] + '</div>' +
+                                                '</div>' +
+                                            '</div></div>' +
+                                            '<div class="caller">' +
+                                                '<div class="phone" title="Voice Call"><i class="fa fa-phone" aria-hidden="true"></i></div>' +
+                                                '<div class="email"><i class="fa fa-envelope" aria-hidden="true"></i></div>' +
+                                                '<div class="video" title="Video Call"><i class="fas fa-video" aria-hidden="true"></i></div>' +
+                                                '<div class="mic" title="Record Voice"><i class="fas fa-microphone" aria-hidden="true"></i></div>' +
+                                                '<div class="time">' + ((data.Results[i].LastMessageAtFormatted != '' && data.Results[i].LastMessageAtFormatted != null) ? data.Results[i].LastMessageAtFormatted.split(' ')[0] : '') + '</div>' +
+                                                '<div class="last-login-time">' + ((data.Results[i].LastLoginAtFormatted != '' && data.Results[i].LastLoginAtFormatted != null) ? data.Results[i].LastLoginAtFormatted.split(' ')[0] : '') + '</div>' +
+                                            '</div>' +
+                                        '</div>';
+                                }
+                            });
+                            if (pageView == 0 && (did != null || userStatus != null)) {
+                                var heading = $(sender).parents('.department-container').find('div.department-heading').html();
+                                str = '<div class="department-heading">' + heading + '</div>' + str;
+                                $(sender).parents('.department-container').html(str);
+                                $(sender).parents('.bottom-row').remove();
+                                
+                            }else if (pageView == 0){
+                                $(sender).parents('.header-msg').find('div.user-row').remove();
+                                $(sender).parents('.header-msg').append(str);
+                                $(sender).parents('.bottom-row').remove();
+                            } else {
+                                str += '<div class="bottom-row"><a onclick="viewMore(this, ' + did + ',' + (pageNum + 1) + ',1,'+userStatus+')" href="javascript:;">View More</a>&nbsp;<a onclick="viewMore(this, ' + did + ',' + (pageNum + 1) + ',0,'+userStatus+')" href="javascript:;">View All</a></div>';
+                                $(str).insertBefore($(sender).parents('.bottom-row'));
+                                $(sender).parents('.bottom-row').remove();
+                            }
+                        }
+                    } else {
+                        $(sender).parents('.bottom-row').remove();
+                    }
+                }
+            });
+        }    
+        
+        function bindChatScroll(){
+            var chatPageNumber = 1;
+            $('.chat-box div.chats').on('scroll', function(){
+                if ($('.chat-box div.chats').scrollTop() == 0){
+                    chatPageNumber = chatPageNumber + 1;
+                    var id = $('.chat-box').find('#ChatGroupId').val();
+                    var receiverIds = $('.chat-box').find('#ReceiverIds').val();
+                    var chatSourceId = $('.chat-box').find('#ChatSourceId').val();
+                    var userChatGroupId = $('.chat-box').find('#UserChatGroupId').val();
+                    var taskId = $('.chat-box').find('#TaskId').val();
+                    var taskMultilevelListId = $('.chat-box').find('#TaskMultilevelListId').val();
+                    var senderId = getCookie('<%=JG_Prospect.Common.Cookies.UserId%>');
+                    // Do Ajax call to get more messages and prepend them
+                    // To the inner div
+                    // How you paginate them will be the tricky part though
+                    // You'll likely have to send the ID of the last message, to retrieve 5-10 'before' that 
+                    LoadPreviousChat(this, id, receiverIds + ',' + senderId, chatSourceId, userChatGroupId, taskId, taskMultilevelListId, chatPageNumber, 50, true);
+                }
+            });
+            
+            // Change title for Ops & HR chats
+            var userChatGroupId = parseInt($('.chat-box').find('#UserChatGroupId').val());
+            var userChatGroupType = parseInt($('.chat-box').find('#UserChatGroupType').val());
+            var taskId = parseInt($('.chat-box').find('#TaskId').val());
+            //var oldTitle = $('.telecom-dashboard-popup .popup-title').html();
+            var newTitle = '';
+            if(userChatGroupId > 0){
+                if(taskId > 0){
+                    // Operational Chat
+                    newTitle = 'Ops Group Chat';
+                    var taskUrl = $('.telecom-dashboard-popup .bottom-outer').find('a').attr('href');
+                    var taskInstallId = $('.telecom-dashboard-popup .bottom-outer').find('a').html();
+                    var taskTitle = $('.telecom-dashboard-popup .bottom-outer .custom-name').find('span').html();
+
+                    newTitle = newTitle + ' <a target="_blank" onclick="event.stopPropagation();" href="' + taskUrl + '">' + taskInstallId + '</a> <span>' + taskTitle + '</span>';
+                    $('.telecom-dashboard-popup .popup-title').html(newTitle);
+                } else if(userChatGroupType == '1' || userChatGroupType == 1){
+                    // Normal Group chat
+                    $('.telecom-dashboard-popup .popup-title').html('Chat Dashboard');
+                }                
+                else {
+                    // HR Group Chat
+                    var users = $('.telecom-dashboard-popup .group-name').find('span.user-name');
+                    var devName = '', newUserInstallId = '';
+                    $.each(users, function(i){
+                        var uid = parseInt($(this).find('a').attr('uid'));
+                        if(uid != 780 && uid != 901){
+                            devName = $(this).html();
+                            newUserInstallId = $(this).find('a').html();
+                            newTitle = 'HR Group Chat<span> APP:' + newUserInstallId + ':' + devName + '</span>';
+                        }
+                    });
+                    $('.telecom-dashboard-popup .popup-title').html(newTitle);
+                }
+            }
+        }
+    </script>
+    <uc1:_WebToWebCaller runat="server" ID="_WebToWebCaller" />
+
+</body>
+</html>

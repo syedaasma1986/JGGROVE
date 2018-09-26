@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="callingXML.aspx.cs" Inherits="JG_Prospect.callingXML" %>

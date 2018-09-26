@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+    <link href="chat.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.chatHub;
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                console.log('started...')
+
+                $('#sendChat').click(function () {
+                    chat.server.sendChatMessage($('#ChatGroupId').val(), $('#chattext').val());
+                    $('#chattext').val('');
+                });
+                $('#chattext').keyup(function (ev) {
+                    if (ev.which === 13) {
+                        chat.server.sendChatMessage($('#ChatGroupId').val(), $('#chattext').val());
+                        $('#chattext').val('');
+                    }
+                });
+                $(document).on('keyup', '#chattext', function (ev) {
+                    if (ev.which === 13) {
+                        chat.server.sendChatMessage($('#ChatGroupId').val(), $('#chattext').val());
+                        $('#chattext').val('');
+                    }
+                });
+            }).fail(function (reason) {
+                debugger;
+                console.log(reason);
+            });
+
+            //Callback function which the hub will call when it has finished processing,
+            // is attached to the proxy
+            chat.client.updateClient = function (data) {
+                var strChat = '<div class="chat-box" id="' + data.Message + '">' +
+                                            '<div class="header">' + data.Message + '</div>' +
+                                            '<input type="hidden" id="ChatGroupId" value="' + data.Message + '" />' +
+                                            '<div class="chats"></div>' +
+                                            '<div class="chat-text">' +
+                                                '<input type="text" id="chattext" />' +
+                                                '<input type="button" value="Send" id="sendChat" />' +
+                                            '</div>' +
+                                       '</div>';
+                if ($('.all-chats').find('#' + data.Message).length <= 0) {
+                    $('.all-chats').append(strChat);
+                }
+
+                // Add the message to the page.
+                var str = '<div class="chat-row receiver"><div class="profile">' +
+                                '<img src="' + data.Object.UserProfilePic + '" title="' + data.Object.UserFullname + '" />' +
+                            '</div>' +
+                            '<div class="message">' + data.Object.Message + '</div></div>';
+                $('.chat-box .chats').append(str);
+                // Show Chat Container
+                //window.parent.document.getElementById('chat-container').style.display = 'block';
+                //$('.chat-box').find('#ChatGroupId').val(data.Message);
+            };
+            chat.client.receiveMessage = function (data) {
+                // Add the message to the page.
+
+            };
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
+<div class="all-chats">
+</div>

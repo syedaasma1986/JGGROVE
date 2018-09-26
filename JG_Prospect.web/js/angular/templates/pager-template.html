@@ -1,0 +1,18 @@
+﻿<div>
+    <!--<span ng-show="TotalRecords" class="pagingInfo">found {{TotalRecords}} items</span>-->
+    <span ng-hide="true" class="pagingInfo">found {{TotalRecords}} items</span>
+    <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+        <span class="pagingInfo">Page</span>
+        <ul class="pagination">
+            <li><a href="javascript:void(0);" ng-hide="page == 0" ng-click="search(0)"><<</a></li>
+            <li><a href="javascript:void(0);" ng-hide="page == 0" ng-click="search(page-1)"><</a></li>
+            <li ng-repeat="n in range()" ng-class="{active: n == page}">
+                <a href="javascript:void(0);" ng-click="search(n)" ng-if="n != page">{{n+1}}</a>
+                <span ng-if="n == page">{{n+1}}</span>
+            </li>
+            <li><a href="javascript:void(0);" ng-hide="page == pagesCount - 1" ng-click="search(page+1)">></a></li>
+            <li><a href="javascript:void(0);" ng-hide="page == pagesCount - 1" ng-click="search(pagesCount - 1)">>></a></li>
+        </ul>
+        <span class="pagingInfo">of {{pagesCount}}</span>
+    </div>
+</div>

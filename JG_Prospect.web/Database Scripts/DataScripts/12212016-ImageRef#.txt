@@ -1,0 +1,207 @@
+ID : 1, Name : yogesh - task generator feed back & 2.0(1).xlsx, TaskId : 1
+ID : 2, Name : shabbir-Task generator detailed - with comment.doc, TaskId : 1
+ID : 3, Name : IMG-20160322-WA0001.jpg, TaskId : 2
+ID : 4, Name : 20160708_192107.jpg, TaskId : 2
+ID : 5, Name : 111.PNG, TaskId : 1
+ID : 6, Name : 1.PNG, TaskId : 20
+ID : 7, Name : shabbir-Task generator detailed - with comment.doc, TaskId : 20
+ID : 8, Name : yogesh - task generator feed back & 2.0.xlsx, TaskId : 1
+ID : 9, Name : New Text Document.txt, TaskId : 27
+ID : 10, Name : Product line phase 1.xlsx, TaskId : 27
+ID : 11, Name : New Text Document.txt, TaskId : 27
+ID : 12, Name : Product line phase 1.xlsx, TaskId : 27
+ID : 13, Name : M-950AA.pdf, TaskId : 27
+ID : 14, Name : Copy of 72 E lancaster ave -Final!!.xlsx, TaskId : 27
+ID : 15, Name : nsmail-5.pdf, TaskId : 27
+ID : 16, Name : M950MPC.pdf, TaskId : 27
+ID : 17, Name : Penn Dot Forms - 72 E Lancaster Ave - Copy.zip, TaskId : 39
+ID : 18, Name : Penn Dot Forms - 72 E Lancaster Ave - Copy.zip, TaskId : 40
+ID : 19, Name : JGrove-Realestate-ACHTransfers.docx, TaskId : 40
+ID : 20, Name : IMG-20160322-WA0001.jpg, TaskId : 41
+ID : 21, Name : 20160708_192107.jpg, TaskId : 41
+ID : 22, Name : customsoft - MEF default & MEF soffit.xlsx, TaskId : 46
+ID : 23, Name : JG supply- woocommerce gateway.docx, TaskId : 50
+ID : 24, Name : JG supply- woocommerce gateway.docx, TaskId : 50
+ID : 25, Name : JG supply- woocommerce gateway.docx, TaskId : 51
+ID : 26, Name : JG supply- woocommerce gateway.docx, TaskId : 51
+ID : 27, Name : New LLC - docket #.pdf, TaskId : 51
+ID : 28, Name : JMG1 EIN.pdf, TaskId : 51
+ID : 29, Name : pam- story board.docx, TaskId : 1
+ID : 30, Name : Staffing Coordinator-Office Manager Training.pptx, TaskId : 1
+ID : 31, Name : deep - HR - 1 sr . 2jr .net.xlsx, TaskId : 43
+ID : 32, Name : format edit sales.PNG, TaskId : 60
+ID : 33, Name : saved reports - MNGR & user sepearate.PNG, TaskId : 60
+ID : 34, Name : Official Change of Address Confirmation and Next S, TaskId : 56
+ID : 35, Name : CSV edit sales user  - tech task-1.docx, TaskId : 90
+ID : 36, Name : Deep- CSV.xlsx, TaskId : 90
+ID : 37, Name : calendar home - tech task-1.docx, TaskId : 99
+ID : 38, Name : Attachement-Justin-09072016.PNG, TaskId : 110
+ID : 39, Name : Formating-FileLinks.PNG, TaskId : 110
+ID : 40, Name : Status 14-09-2016 09-52-24-AM.pdf, TaskId : 84
+ID : 41, Name : Task Generator - Tech task  - Bhavik.docx, TaskId : 118
+ID : 42, Name : BhavikVaishnani_09232016.doc, TaskId : 117
+ID : 43, Name : BhavikVaishnani_09232016.doc, TaskId : 117
+ID : 44, Name : BhavikVaishnani_09232016_db.sql, TaskId : 117
+ID : 45, Name : no tech task drop down to assign from this link.pn, TaskId : 125
+ID : 46, Name : Edit sales users - tech task 1.1 - Yogesh.docx, TaskId : 14
+ID : 51, Name : csv example.png, TaskId : 91
+ID : 52, Name : av feedback.png, TaskId : 132
+ID : 53, Name : customer add error.png, TaskId : 134
+ID : 54, Name : successful customer add redirect - current flow.pn, TaskId : 134
+ID : 55, Name : Calendar home - tech task-#99.docx, TaskId : 99
+ID : 56, Name : Calendar home - tech task-#99.docx, TaskId : 99
+ID : 57, Name : AreefAliSheik_10042016.doc.docx, TaskId : 99
+ID : 58, Name : AreefAliSheik_10042016.doc.docx, TaskId : 99
+ID : 59, Name : WorkSpecs.PNG, TaskId : 113
+ID : 60, Name : Task-Desc-Embed-Notes.PNG, TaskId : 140
+ID : 61, Name : Edit sales users - tech task 1.1 - Yogesh-2.docx, TaskId : 145
+ID : 62, Name : Edit sales users - tech task 1.1 - Yogesh-2.docx, TaskId : 145
+ID : 63, Name : Vendor MGMT  - tech spec.docx, TaskId : 146
+ID : 64, Name : 20160915_112639.jpg, TaskId : 146
+ID : 65, Name : 20160912_160155.jpg, TaskId : 141
+ID : 66, Name : sprint 1 - 7-4-16.docx, TaskId : 141
+ID : 67, Name : Sales Mod 2.0 description.docx, TaskId : 148
+ID : 68, Name : sales mod 2.0 - alpha error report 6-10-16.xlsx, TaskId : 148
+ID : 69, Name : add vendor critical errors.xlsx, TaskId : 146
+ID : 71, Name : Edit sales users - tech task 1.1 - Yogesh-2.docx, TaskId : 145
+ID : 72, Name : customsoft - MEF default & MEF soffit.xlsx, TaskId : 148
+ID : 73, Name : Inventory MGMT -Bulk upload CSV (ex).xlsx, TaskId : 102
+ID : 74, Name : b68258bc-6aa3-44ec-9f2e-fb9a7f1bda76-calendar home, TaskId : 99
+ID : 75, Name : PIC001-test site.PNG, TaskId : 149
+ID : 76, Name : pic002-calendar task.PNG, TaskId : 155
+ID : 77, Name : 5-19-15 calendars- - 12-7-14.docx, TaskId : 47
+ID : 78, Name : yogesh easy points.PNG, TaskId : 156
+ID : 79, Name : 20161017_175552.jpg, TaskId : 141
+ID : 80, Name : ITSN039-UI01.PNG, TaskId : 156
+ID : 81, Name : ITSN042-IMG001.png, TaskId : 163
+ID : 82, Name : #ITSN039-IMG001.PNG, TaskId : 164
+ID : 83, Name : #ITSN039-IMG002.PNG, TaskId : 164
+ID : 84, Name : ITSN042-IMG002.PNG, TaskId : 165
+ID : 85, Name : MEF Default word Spec.docx, TaskId : 148
+ID : 86, Name : # ITJN009-IMG001.png, TaskId : 171
+ID : 87, Name : Edit sales users -JG 10-31-16.docx, TaskId : 145
+ID : 88, Name : Employee Refferal  - tech task.docx, TaskId : 83
+ID : 89, Name : Home Page -Update.xlsx, TaskId : 147
+ID : 90, Name : Vendor MGMT Critical.xlsx, TaskId : 146
+ID : 91, Name : Vendor MGMT  - tech spec.docx, TaskId : 146
+ID : 92, Name : Overhead-BankingFinancing- product- Free business , TaskId : 102
+ID : 93, Name : ITJN016-IMG001.PNG, TaskId : 174
+ID : 94, Name : ITJN016-IMG002.PNG, TaskId : 174
+ID : 95, Name : Sales calendar mock up!! rough.pdf, TaskId : 173
+ID : 96, Name : ITJN009IMG001.png, TaskId : 176
+ID : 98, Name : Edit sales user - Spec rough draft.docx, TaskId : 60
+ID : 99, Name : Status review!!!.docx, TaskId : 179
+ID : 100, Name : JMGroves_Code_Changes_Shekhar_Pawar_20161104.zip, TaskId : 138
+ID : 101, Name : ITSN042-IMG001.png, TaskId : 182
+ID : 102, Name : PHP employment NEW FORM Mock up.xlsx, TaskId : 187
+ID : 103, Name : PHP employment NEW FORM Mock up.xlsx, TaskId : 187
+ID : 104, Name : PHP new page update.PNG, TaskId : 188
+ID : 105, Name : Skill assessment & HD process.docx, TaskId : 145
+ID : 106, Name : HD screening legal.docx, TaskId : 145
+ID : 107, Name : Create sales users -JG 10-31-16.docx, TaskId : 145
+ID : 108, Name : PouPup.png, TaskId : 145
+ID : 109, Name : accept-reject.PNG, TaskId : 190
+ID : 110, Name : accept-reject-task.PNG, TaskId : 190
+ID : 111, Name : ITSN042-IMG010.PNG, TaskId : 184
+ID : 112, Name : OPERATING AGREEMENT (Grove).doc, TaskId : 51
+ID : 113, Name : New LLC - docket #.pdf, TaskId : 51
+ID : 114, Name : Sales calendar mock up!! rough.pdf, TaskId : 47
+ID : 115, Name : IMGREF#1.png, TaskId : 193
+ID : 116, Name : IMGREF#2.png, TaskId : 193
+ID : 117, Name : IMGREF#1.png, TaskId : 147
+ID : 118, Name : IMGREF#2.png, TaskId : 147
+ID : 119, Name : NEW LLC CREATION instructions.txt, TaskId : 51
+ID : 120, Name : Form 2553 S Corp - JG supply De.pdf, TaskId : 51
+ID : 121, Name : Blank - File Form 2553 - S corporation.pdf, TaskId : 51
+ID : 122, Name : login.aspx, TaskId : 147
+ID : 123, Name : login.aspx.cs, TaskId : 147
+ID : 124, Name : drive-download-20161115T230352Z.zip, TaskId : 198
+ID : 125, Name : kerfinal.jpg, TaskId : 199
+ID : 126, Name : sprint 1 - 7-4-16.docx, TaskId : 201
+ID : 128, Name : e1.png, TaskId : 146
+ID : 129, Name : e2.png, TaskId : 146
+ID : 130, Name : e3.png, TaskId : 146
+ID : 131, Name : e4.png, TaskId : 146
+ID : 132, Name : error_on_page_when_table_has_no_rows.png, TaskId : 146
+ID : 137, Name : Jaylemchaudhari_11112016_1A_db.sql, TaskId : 147
+ID : 138, Name : Jaylemchaudhari_11112016_1A.docx, TaskId : 147
+ID : 139, Name : Jaylemchaudhari_11112016_1A_db.sql, TaskId : 147
+ID : 140, Name : Jaylemchaudhari_11112016_1A_db.sql, TaskId : 147
+ID : 141, Name : Jaylemchaudhari_11112016_1A.docx, TaskId : 147
+ID : 142, Name : Jaylemchaudhari_11112016_1A_db.sql, TaskId : 147
+ID : 143, Name : Jaylemchaudhari_11112016_1A.docx, TaskId : 147
+ID : 144, Name : Jaylemchaudhari_11182016_1B_db.sql, TaskId : 147
+ID : 145, Name : Task3.png, TaskId : 147
+ID : 146, Name : editVendor_Not_Reflecting.png, TaskId : 146
+ID : 147, Name : notes_incorrect.png, TaskId : 146
+ID : 150, Name : JGrove-Realestate-ACHTransfers-1.docx, TaskId : 21
+ID : 153, Name : jgconstruction-employment-form.PNG, TaskId : 187
+ID : 155, Name : Aptitude Test.docx, TaskId : 211
+ID : 156, Name : signin-popup.PNG, TaskId : 207
+ID : 157, Name : Creat Sales uer_New Hire 2.png, TaskId : 213
+ID : 158, Name : Creat Sales uer_New Hire.png, TaskId : 213
+ID : 159, Name : Dependancy_On_table_tblInstallUsers.xlsx, TaskId : 218
+ID : 160, Name : e5.png, TaskId : 220
+ID : 161, Name : nisha_02122016_quote-service-contact-us.php, TaskId : 35
+ID : 162, Name : nisha_02122016_buy.php, TaskId : 35
+ID : 163, Name : error_screen.png, TaskId : 222
+ID : 164, Name : Image 5.png, TaskId : 227
+ID : 165, Name : shabbir - field recovery.PNG, TaskId : 229
+ID : 166, Name : New Field needed.PNG, TaskId : 229
+ID : 167, Name : primary ID- phone # & Email.png, TaskId : 232
+ID : 168, Name : NOT Sold formatting.png, TaskId : 230
+ID : 169, Name : #variable fields# img ex.PNG, TaskId : 235
+ID : 170, Name : build-error.PNG, TaskId : 242
+ID : 171, Name : nisha_02122016_quote-service-contact-us.php, TaskId : 50
+ID : 172, Name : nisha_02122016_buy.php, TaskId : 50
+ID : 174, Name : SMS_Functionality_Specifications.docx, TaskId : 245
+ID : 175, Name : add-edit vendor UI.png, TaskId : 220
+ID : 176, Name : IMG_14112016_121929.png, TaskId : 60
+ID : 178, Name : Search ALL IMG.PNG, TaskId : 257
+ID : 179, Name : Edit Sales -shekhar IMG.PNG, TaskId : 180
+ID : 180, Name : Edit Sales -shekhar IMG.PNG, TaskId : 252
+ID : 182, Name : select product category.PNG, TaskId : 264
+ID : 183, Name : sales 2.0 UI.PNG, TaskId : 148
+ID : 184, Name : sales 2.0 UI.PNG, TaskId : 262
+ID : 185, Name : line 2 & 3.PNG, TaskId : 263
+ID : 186, Name : before & after feature.png, TaskId : 266
+ID : 187, Name : proposal costs & 3 JG offer.PNG, TaskId : 267
+ID : 188, Name : Special Instructions & Exemptions-Not Doing & Cust, TaskId : 268
+ID : 189, Name : NOT SOLD IMG.png, TaskId : 270
+ID : 190, Name : SOLD IMG.png, TaskId : 270
+ID : 191, Name : solarstar_rooftopcutaway.jpg, TaskId : 272
+ID : 192, Name : Yogesh task gen formatting.PNG, TaskId : 0
+ID : 193, Name : Yogesh task gen formatting.PNG, TaskId : 0
+ID : 194, Name : Yogesh task gen formatting.PNG, TaskId : 0
+ID : 195, Name : Yogesh task gen formatting.PNG, TaskId : 273
+ID : 197, Name : USer status- bhavik.PNG, TaskId : 278
+ID : 198, Name : status needed update!.PNG, TaskId : 278
+ID : 199, Name : Yogesh- Touch Point LOG fix.PNG, TaskId : 279
+ID : 200, Name : Yogesh formatting.PNG, TaskId : 274
+ID : 201, Name : IMGstatus.png, TaskId : 288
+ID : 202, Name : yogesh original tech task.PNG, TaskId : 275
+ID : 203, Name : Yogesh IMG generator.PNG, TaskId : 275
+ID : 204, Name : android UI task 1.xlsx, TaskId : 285
+ID : 205, Name : android UI task 2.xlsx, TaskId : 291
+ID : 206, Name : Copy of Web Service Details.xlsx, TaskId : 291
+ID : 207, Name : bhavik review 12-13-16.PNG, TaskId : 145
+ID : 208, Name : employement.html, TaskId : 2
+ID : 209, Name : employment.php, TaskId : 2
+ID : 210, Name : Vendor MGMT CSV - default template.xlsx, TaskId : 52
+ID : 211, Name : Overhead-Banking Financing-product- Free business , TaskId : 74
+ID : 213, Name : Vendor MGMT CSV - Logistics.xlsx, TaskId : 300
+ID : 214, Name : Notes error.PNG, TaskId : 301
+ID : 215, Name : quick quote.PNG, TaskId : 302
+ID : 216, Name : remove crap!.PNG, TaskId : 302
+ID : 217, Name : Hr reports - status location.PNG, TaskId : 278
+ID : 218, Name : employment form - formatting feedbak.PNG, TaskId : 292
+ID : 219, Name : unable to delete..PNG, TaskId : 294
+ID : 220, Name : ITJN019-IMG001.PNG, TaskId : 309
+ID : 221, Name : ITJN024-IMG001.PNG, TaskId : 314
+ID : 222, Name : ITSN046-IMG006.PNG, TaskId : 318
+ID : 223, Name : REC001-IMG013.PNG, TaskId : 206
+ID : 224, Name : ITSN003-IMG002.docx, TaskId : 325
+ID : 225, Name : ITSN003-IMG003.docx, TaskId : 325
+ID : 226, Name : ITSN003-IMG004.docx, TaskId : 328
+ID : 227, Name : ITSN003-IMG005.docx, TaskId : 21
+ID : 228, Name : ITSN003-IMG006.docx, TaskId : 21

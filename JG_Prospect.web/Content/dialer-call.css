@@ -1,0 +1,1305 @@
+.button-3 {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+    .button-3 li {
+        display: inline-block;
+        width: 45%;
+        max-width: 200px;
+        height: 1em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        margin-bottom: 1%;
+    }
+
+.last {
+    clear: left;
+}
+
+.first {
+    clear: right;
+}
+
+#numberDisplay input {
+    text-align: center;
+    background: #666;
+    padding: 10px 0;
+    margin-top: 10px;
+    margin-bottom: 1%;
+    font-size: 22px;
+    color: #fff;
+    border: 2px solid #fff;
+    font-weight: 100;
+    width: 82%;
+    border-radius: 4px;
+}
+
+#actions .call.ready {
+    background: rgba(0, 255, 0, 0.2);
+    color: #fff;
+}
+
+    #actions .call.ready:hover {
+        background: rgba(0, 255, 0, 0.4);
+    }
+
+#actions .skip.ready {
+    background: rgba(0, 255, 0, 0.2);
+    color: #fff;
+}
+
+    #actions .skip.ready:hover {
+        background: rgba(0, 255, 0, 0.4);
+    }
+
+#actions .clear.ready {
+    background: rgba(255, 0, 0, 0.2);
+    color: #fff;
+}
+
+    #actions .clear.ready:hover {
+        background: rgba(255, 0, 0, 0.4);
+    }
+
+#actions .deactive {
+    opacity: .2;
+}
+
+#dialpad,
+#actions,
+#numberDisplay {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    #dialpad.deactive {
+        opacity: .2;
+    }
+
+        #dialpad.deactive li:hover,
+        #actions li.deactive:hover {
+            background: #eee;
+        }
+
+    #dialpad li {
+        font-weight: bold;
+        background: #444;
+        width: 30%;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        #dialpad li:hover {
+            background: Green;
+        }
+
+    #actions li {
+        background: #efefef;
+        opacity: .8;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        #actions li.call.active {
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        #actions li.hangup {
+            background: rgba(255, 125, 0, 0.2);
+            color: #fff;
+        }
+
+            #actions li.hangup:hover {
+                background: rgba(255, 125, 0, 0.4);
+            }
+
+        #actions li:hover {
+            background: #ccc;
+        }
+
+#phone {
+    background: #333;
+    width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    width: 23%;
+    float: left;
+}
+
+#actions li a {
+    color: #333;
+    display: inline-block;
+    padding: 10px 0;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    border-radius: 5px;
+}
+
+    #actions li a:hover {
+        text-decoration: none;
+    }
+
+#actions li.skip {
+    display: none;
+}
+
+#logout_box, #login_box {
+    display: none !important;
+}
+
+div#wrapper {
+    margin-top: 0px;
+    text-align: center;
+    position: relative;
+}
+
+#status_txt, #callDuration {
+    padding: 10px 0;
+    display: inline-block;
+    color: #777;
+}
+
+.dialer-section {
+    margin: 1px 0 0 1px;
+}
+
+.call-logs {
+    width: 873px;
+    float: left;
+    height: 556px;
+    background: #eee;
+    left: 373px;
+    position: absolute;
+    top: -33px;
+    border-radius: 5px;
+    z-index: 101;
+    border: 1px solid #999;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+}
+
+    .call-logs .row, .scrips .row {
+        display: inline-block;
+        width: 100%;
+        margin: 2px 0 0 0;
+        text-align: left;
+    }
+
+        .call-logs .row .title, .scrips .row .title {
+            padding: 5px;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            border: 1px solid #aaa;
+            background: #ddd;
+        }
+
+        .call-logs .row .desc, .scrips .row .desc {
+            display: inline-block;
+            width: 98%;
+            padding: 5px 5px 5px 10px;
+            margin: 0;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+.phone-statistics {
+    position: absolute;
+    left: 373px;
+    width: 873px;
+    height: 100px;
+    background: #fff;
+    top: 170px;
+    z-index: 101;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.user-grid {
+    position: absolute;
+    left: 373px;
+    width: 873px;
+    height: 100px;
+    background: #fff;
+    top: 271px;
+    z-index: 101;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.call-logs .row .type, .scrips .row .type {
+    padding-left: 0px;
+}
+
+    .call-logs .row .type .sub-type, .scrips .row .type .sub-type {
+        display: none;
+        padding-left: 10px;
+    }
+
+.dialer-container {
+    float: left;
+    width: 100%;
+    padding: 0px;
+}
+
+div.userlist-calling-grid {
+    float: left;
+    width: 100%;
+    background: #fff;
+    height: 87px;
+}
+
+.dialer-right div.phone-stats {
+    height: 173px;
+    padding: 0px 5px;
+}
+
+.userlist-calling-grid tbody {
+    background: #f57575;
+}
+
+.userlist-calling-grid table.header-table {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+    .userlist-calling-grid table.header-table thead tr {
+        background-color: #A33E3F;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+    }
+
+    .userlist-calling-grid table.header-table tr th, .userlist-calling-grid table.header-table tr td {
+        width: 10%;
+        padding: 10px;
+        border: 1px solid #eee;
+        text-align: left;
+        vertical-align: top;
+    }
+
+.dd .ddChild li {
+    width: 95% !important;
+}
+
+.ddOutOfVision {
+    position: relative;
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+}
+
+.dd {
+    border: 1px solid #c3c3c3;
+}
+
+.ddcommon {
+    position: relative;
+    display: -moz-inline-stack;
+    zoom: 1;
+    display: inline-block;
+    cursor: default;
+}
+
+.borderRadius {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.dd .ddTitle {
+    color: #000;
+    background: #e2e2e4 url(../css/msdropdown/title-bg.gif) repeat-x left top;
+}
+
+.ddcommon .ddTitle {
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.borderRadiusTp {
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.ddcommon .divider {
+    width: 0;
+    height: 100%;
+    position: absolute;
+}
+
+.dd .ddArrow {
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    background: url(../css/msdropdown/dd_arrow.gif) no-repeat;
+}
+
+.ddcommon .ddArrow {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 4px;
+}
+
+.dd .ddTitle .description {
+    font-size: 12px;
+    color: #666;
+}
+
+.ddcommon .ddTitle .description {
+    display: block;
+}
+
+table.stats {
+    width: 100%;
+    border: 1px solid #aaa;
+    background: #eee;
+    border-spacing: 0px;
+    font-size: 14px;
+}
+
+.stats td {
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+
+
+#phone .logger {
+    background: #FFF;
+    float: left;
+    padding: 0 0 0 5px;
+    width: 98.3%;
+}
+
+.logger .title {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tabs {
+    display: inline-block;
+    width: 100%;
+    top: 1px;
+    position: relative;
+}
+
+    .tabs > div.active {
+    }
+
+    .tabs div {
+        padding: 10px 20px;
+        float: left;
+        background-color: #fff;
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+        background: -webkit-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: -moz-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: -o-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        border: 1px solid #ddd;
+        margin: 0;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+.logger .log-content {
+    float: left;
+    border: 1px solid #ddd;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 99.4%;
+    margin-top: -3px;
+}
+
+    .logger .log-content .row {
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        padding: 0px 0;
+        margin: 1px 0;
+    }
+
+        .logger .log-content .row .name-phone {
+            float: left;
+            width: 40%;
+        }
+
+        .logger .log-content .row .datetime {
+            float: left;
+            width: 50%;
+        }
+
+.tabs div.active {
+    border-bottom: 1px solid #FFF;
+    background: #fff;
+}
+
+.play-stop {
+    width: 53%;
+    display: inline-block;
+    background: #999;
+    border-radius: 5px;
+    font-size: 30px;
+    margin-top: 2px;
+}
+
+    .play-stop span.play {
+        color: #A33E3F;
+        cursor: pointer;
+    }
+
+    .play-stop span.pause {
+        color: #dc5b06;
+        cursor: pointer;
+    }
+
+    .play-stop span.stop, .play-stop span.back, .play-stop span.next {
+        cursor: pointer;
+    }
+
+.script-data .tab-1 .title, .script-data .tab-1 .title {
+}
+
+.script-data .tab-1 {
+}
+
+.script-data .tab-2 {
+    display: none;
+}
+
+
+
+/*********New Phone Start */
+.phone-panel {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    border-color: white;
+}
+
+.span4 {
+    width: 80px;
+    float: left;
+    /*margin: 0 8px 10px 8px;*/
+}
+
+.phone {
+    /*margin-top: 15px;*/
+    background: rgba(150, 209, 150, 0.09);
+}
+.phone-number-box{
+
+}
+.tel {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    /*margin-left:20px;*/
+    background-color: rgba(0, 0, 0, 0) !important;
+    color: white !important;
+    font-weight: 600;
+    width: 100%;
+    padding: 14px 0px;
+    border-radius: 5px;
+    height: 14px;
+    padding-left: 46px !important;
+}
+.intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel]{    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    margin-left: 20px;}
+.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=text], .intl-tel-input.separate-dial-code input[type=tel]{
+    padding-left: unset;
+    padding-right:unset;
+}
+/*.tel:focus{border-color: #bbb !important;}
+.intl-tel-input .selected-flag .iti-flag{top: 7px;}
+.intl-tel-input .selected-flag .iti-arrow{    margin-top: 1px;}
+.intl-tel-input{    width: 35px;}*/
+
+.num-pad {
+    padding-left: 15px;
+}
+
+
+.num {
+    /*border: 1px solid #9e9e9e;*/
+    -webkit-border-radius: 999px;
+    border-radius: 999px;
+    -moz-border-radius: 999px;
+    height: 30px;
+    /*background-color: #fff;*/
+    cursor: pointer;
+}
+
+    .num:hover {
+        background-color: #5cb85c;
+        color: #fff;
+        transition-property: background-color .2s linear 0s;
+        -moz-transition: background-color .2s linear 0s;
+        -webkit-transition: background-color .2s linear 0s;
+        -o-transition: background-color .2s linear 0s;
+    }
+
+.txt {
+    font-size: 18px;
+    text-align: center;
+    /*margin-top: 15px;*/
+    font-family: 'Lato', sans-serif;
+    /*line-height: 30px;*/
+    color: white;
+}
+
+.num .txt .small > p {
+    margin: 0;
+    font-size: 10px;
+}
+
+.small {
+    font-size: 15px;
+}
+
+.btn {
+    font-weight: bold;
+    -webkit-transition: .1s ease-in background-color;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 1px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 6px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-block {
+    width: 28%;
+    float: left;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+.caller-position span {
+    background: #129c17;
+    color: #fff;
+    border-radius: 3px;
+}
+span.reset.btn {
+    background: #d0700a;
+    width: 12px;
+    padding: 6px 10px;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.btn:hover {
+    transition-property: background-color .2s linear 0s;
+    -moz-transition: background-color .2s linear 0s;
+    -webkit-transition: background-color .2s linear 0s;
+    -o-transition: background-color .2s linear 0s;
+}
+
+.spanicons {
+    width: 72px;
+    float: left;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+    .spanicons:hover {
+        color: #3498db;
+        transition-property: color .2s linear 0s;
+        -moz-transition: color .2s linear 0s;
+        -webkit-transition: color .2s linear 0s;
+        -o-transition: color .2s linear 0s;
+    }
+
+.active {
+    color: #3498db;
+}
+
+.metrics {
+    margin-bottom: 10px;
+    padding: 10px;
+    /*z-index: 10000;*/
+    /*display: inline-block;*/
+    /*background: rgba(0,153,204,0.93);*/
+    background: rgba(244, 67, 54, 0.75);
+    /*border: 1px solid #006b8f;*/
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    outline: 0;
+    /*position: fixed;*/
+    top: 0;
+    /*left: 0;*/
+    right: 0;
+    font-family: monospace;
+}
+
+.alertmsg {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    /*width: 20%;*/
+    z-index: 100000;
+}
+
+#recPlayerLayout, .hangup, .inboundBeforeAnswer, .outboundBeforeAnswer, .AfterAnswer, .callinfo, #uiLogout, .lowQualityRadios, .feedback, .loader, .fadein-effect {
+    display: none;
+}
+
+.customAlert {
+    margin-bottom: 10px;
+    padding: 10px;
+    z-index: 10000;
+    background: rgb(14, 14, 14);
+    /*border: 1px solid #03A9F4;*/
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    outline: 0;
+    top: 0;
+    right: 0;
+    font-family: monospace;
+    color: red;
+}
+
+.alertwarn {
+    color: red;
+}
+
+.alertinfo {
+    color: rgb(25, 255, 34);
+}
+
+/*.white{
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}*/
+.white-icon {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.feedback {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 50%;
+    left: -2%;
+}
+
+.audioDevices {
+    position: absolute;
+    top: 20%;
+    right: 0%;
+}
+
+.monospace {
+    font-family: monospace;
+}
+
+.keypad {
+    background-color: deepskyblue;
+    border-radius: 0%;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 5px;
+    margin: 1px;
+    text-align: center;
+    width: 20px;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.dialpad {
+    margin-left: 2%;
+}
+
+.googleLogin {
+    background: url(signin_button.png) no-repeat 6px center;
+    /*width: 100px;*/
+    height: 100px;
+    display: block;
+}
+
+.center-div {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    height: 100px;
+    border-radius: 3px;
+}
+
+.white-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: left;
+}
+
+.client-name {
+    margin-left: 28%;
+    position: absolute;
+    /*font-size: 30px;*/
+    /*font-weight: 600;*/
+    color: gray;
+}
+
+.lead {
+    font-weight: 600;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #00a848;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-success {
+    background-color: #00a848;
+    border-color: rgba(0,0,0,.0001);
+}
+
+.dropdown {
+    margin-top: 6%;
+}
+
+.log-out {
+    font-size: 25px;
+    color: orange;
+}
+
+.log-in {
+    font-size: 25px;
+    color: green;
+}
+
+.log-missed {
+    font-size: 25px;
+    color: red;
+}
+
+.log-call {
+    font-size: 25px;
+    color: green;
+}
+
+    .log-call:hover {
+        text-shadow: 7px 2px 10px;
+        cursor: pointer;
+    }
+
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type: none;
+    padding: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+    .rating-stars ul > li.star {
+        display: inline-block;
+    }
+
+        /* Idle State of the stars */
+        .rating-stars ul > li.star > i.fa {
+            font-size: 2.5em; /* Change the size of the stars */
+            color: #ccc; /* Color on idle state */
+        }
+        /* Hover state of the stars */
+        .rating-stars ul > li.star.hover > i.fa {
+            color: #FFCC36;
+        }
+        /* Selected state of the stars */
+        .rating-stars ul > li.star.selected > i.fa {
+            color: #FF912C;
+        }
+
+.callinfo #boundType, .callinfo #callNum, .callinfo #callDuration {
+    font-size: 12px;
+    float: left;
+    height: auto;
+    line-height: normal;
+    color: #fff;
+    padding: 11px;
+    margin: 0;
+    border-radius: 0;
+    background: url(../img/h4-bg.png) repeat-x;
+}
+
+.dialer-container div#phone {
+    width: 23%;
+    float: left;
+}
+
+div#wrapper {
+    /*text-align: left;*/
+}
+
+.dialer-right > div {
+    z-index: 101;
+    border: 1px solid #bbb;
+    background: #fff;
+}
+
+.dialer-right {
+    float: left;
+    width: 76.8%;
+}
+
+    .dialer-right div.scrips {
+        height: 320px;
+        padding: 5px;
+        width: 98.9%;
+        min-height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+
+div.userlist-grid {
+    float: left;
+    width: 100%;
+    background: #fff;
+}
+
+.telecom-dashboard-popup.fullscreen-phone {
+    height: auto !important;
+}
+/********New Phone End */
+
+.script-data .inner-tabs {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+    .script-data .inner-tabs > div {
+        float: left;
+        padding: 10px 20px;
+        background: #efefef;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 1px solid #ddd;
+    }
+
+.script-data .content {
+    width: 99%;
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #ddd;
+    /*height: 450px;
+    position: absolute;*/
+    float: left;
+    margin-top: 37px;
+    margin-right: 0px;
+    left: 0;
+    top: 37px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.script-data .inner-tabs > div.active {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.script-data {
+    position: relative;
+}
+
+    .script-data .content .content-items > div, .script-data .content .content-items-right > div {
+        float: left;
+        width: 94%;
+        margin-bottom: 10px;
+        color: #000;
+    }
+
+        .script-data .content .content-items > div.edit-link, .script-data .content .content-items-right > div.edit-link {
+            width: 4%;
+            text-align: right;
+            position: absolute;
+            right: 25px;
+            top: 10px;
+        }
+
+    .script-data .content .content-items input[type="button"], .script-data .content .content-items-right input[type="button"] {
+        margin: 10px 5px 0 0;
+        padding: 5px 10px;
+        background: url(/img/main-header-bg.png) repeat-x;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .script-data .content .content-items input[type="button"].cancel, .script-data .content .content-items-right input[type="button"].cancel {
+            background: #666;
+        }
+
+
+.logger .log-content .row .user-image {
+    float: left;
+    width: 40px;
+    position: relative;
+    margin-right: 5px;
+}
+
+    .logger .log-content .row .user-image img {
+        width: 40px;
+        height: 40px;
+    }
+
+.logger .log-content .row .contents {
+    display: inline-block;
+    width: 158px;
+    border-radius: 0px;
+    padding: 2px 0;
+    position: relative;
+    height: 35px;
+    border-right: 2px solid #ccc;
+    float: left;
+    text-align: left;
+}
+
+    .logger .log-content .row .contents .top {
+        width: 100%;
+        float: left;
+    }
+
+        .logger .log-content .row .contents .top .name {
+            float: left;
+            width: 158px;
+            padding: 2px 0;
+            color: #000;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    .logger .log-content .row .contents .msg-container {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+
+        .logger .log-content .row .contents .msg-container .msg {
+            float: left;
+            width: 130px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #666;
+            overflow: hidden;
+            height: 15px;
+        }
+.logger .tabs div {
+    padding: 4px 7px;
+    font-weight: bold;
+    font-size: 13px;
+}.logger .tabs div.active {
+    border-bottom: 1px solid #FFF;
+    background: #fff;
+    color: #3498db;
+}
+.logger .log-content .row .caller {
+    float: right;
+    margin-right: 3px;
+    position: relative;
+    color: #A33E3F;
+}
+
+    .logger .log-content .row .caller div {
+        float: left;
+        font-size: 15px;
+        margin-top: 1px;
+        cursor: pointer;
+    }
+
+.logger .log-content .row .contents .msg-container .tick {
+    float: left;
+}
+
+.script-data .content .content-items > div.script-content, .script-data .content .content-items-right > div.script-content {
+    display: none;
+}
+
+.script-data .content .content-items.active > div.script-content, .script-data .content .content-items-right.active > div.script-content {
+    display: block !important;
+    padding: 5px;
+}
+
+.script-data .content .content-items > div.title, .script-data .content .content-items-right > div.title {
+    padding: 10px 0px 10px 10px;
+    margin: 0 0 5px 0;
+    background: #eee;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.script-data .content .content-items > div.script-content input[type="text"], .script-data .content .content-items-right > div.script-content input[type="text"] {
+    width: 97.7%;
+    padding: 10px;
+    margin: 5px 0;
+    z-index: 1;
+    position: relative;
+}
+
+.tick .img {
+    width: 16px;
+    height: 16px;
+    float: left;
+}
+
+    .tick .img.out {
+        background-image: url(../img/outgoing-green.png);
+    }
+
+        .tick .img.out.not-connected {
+            background-image: url(../img/outgoing-red.png);
+        }
+
+.content .content-items {
+    float: left;
+    width: 65%;
+    position: relative;
+    border-right: 2px solid #333;
+}
+
+.content .content-items-right {
+    float: left;
+    width: 33%;
+    position: relative;
+}
+
+.content .content-row {
+    width: 100%;
+    float: left;
+}
+
+.bottom-row .logger {
+    float: left;
+    width: 23%;
+}
+
+.bottom-row .phone-stats {
+    float: left;
+    width: 99%;
+    padding-left: 7px;
+}
+
+.auto-dialer-bottom-section {
+    float: left;
+    width: 100%;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 300px;
+}
+.auto-dialer-top-section {
+    float: left;
+    width: 100%;
+    height: 333px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}.bottom-row {
+    float: left;
+    width: 76.7%;
+}
+
+ .tab-container .type, .tab-container .subtype {
+    float: left;
+    padding: 10px;
+    background-color: #fff;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+    background: -webkit-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background: -moz-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background: -o-linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    margin: 0;
+    border: 1px solid #bbb;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    font-size: 16px
+}
+ .tab-container .type.active, .tab-container .subtype.active{
+     background: #fff;
+    border-bottom: none;color: #05a5cc;
+ }
+ .dialer-right div.script-container {
+    background: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 330px;
+}
+.tab-container .subtype .chosen-container{display:none;}
+.tab-container .subtype.active .chosen-container{display:inline-block;}
+.tab-container .subtype.active {
+    background: #fff;
+    border-bottom: none;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}.tab-container .type span.arrow,.tab-container .subtype span.arrow{display:none;}
+ .tab-container .type.active span.arrow,  .tab-container .subtype.active span.arrow{display:inline-block;margin-left: 5px;}
+
+ .dialer-right div.script-container .tab-container {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}.script-content {
+    float: left;
+    width: 100%;
+    height: 288px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}.script-content .left-script {
+    float: left;
+    width: 60%;
+    border-right: 1px solid;
+}.script-content .right-faq{
+    float: left;
+    width: 39%;
+        border-left: 1px solid;
+}
+ .single-script {
+    float: left;
+    width: 100%;
+}.single-script .title {
+   
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 5px;
+    background: #DDD;
+    cursor: pointer;
+}.single-script .content {
+    float: left;
+    width: 98%;
+    padding: 5px;
+    text-align: left;
+}.single-script .title a {
+    float: right;
+}.script-content .action input[type="button"] {
+    margin: 0 5px 0 0;
+    padding: 5px 10px;
+    background: url(/img/main-header-bg.png) repeat-x;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}.script-content .action input[type="button"].cancel{background: #666;}
+ .single-script .title input[type="text"] {
+    width: 97%;
+    padding: 5px;
+}.single-script .content textarea {
+    width: 97%;
+    height: 200px;
+}.single-script .action {
+    float: left;
+    width: 100%;
+    padding: 0;
+}
+ #phone-code {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px !important;
+    border-radius: 5px 0px 0px 5px;
+    background: none;
+    border-right: none;
+}
+ .caller-detail {
+    float: left;
+}.caller-detail a {
+    font-size: 9px;
+}

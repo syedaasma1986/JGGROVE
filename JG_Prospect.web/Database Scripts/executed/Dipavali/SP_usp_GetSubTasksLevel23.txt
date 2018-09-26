@@ -1,0 +1,20 @@
+GO
+/****** Object:  StoredProcedure [dbo].[usp_GetSubTasksLevel23]    Script Date: 24-01-2017 PM 02:40:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+create PROCEDURE [dbo].[usp_GetSubTasksLevel23] 
+	@taskId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	select * from tbltask where TaskId=@taskId or MainParentId=@taskId
+
+END
