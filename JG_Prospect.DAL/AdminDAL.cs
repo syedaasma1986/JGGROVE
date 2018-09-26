@@ -20,7 +20,7 @@ namespace JG_Prospect.DAL
 
         private AdminDAL()
         {
-
+            //test
         }
 
         public static AdminDAL Instance
